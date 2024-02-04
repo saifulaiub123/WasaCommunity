@@ -1,0 +1,20 @@
+<form [formGroup]="loginForm" novalidate class="login-form">
+    <mat-form-field class="app-validate">
+        <input matInput formControlName="userName" placeholder="Username" required>
+        <mat-error *ngIf="userName.hasError('required')">
+            User name is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="app-validate">
+        <input (keyup.enter)="login()" matInput formControlName="password" placeholder="Password" type="password">
+        <mat-error *ngIf="password.hasError('required')">
+            Password is <strong>required</strong>
+        </mat-error>
+    </mat-form-field>
+
+    <mat-checkbox formControlName="rememberMe">Remember me!</mat-checkbox>
+
+    <div>&nbsp;</div>
+
+</form>

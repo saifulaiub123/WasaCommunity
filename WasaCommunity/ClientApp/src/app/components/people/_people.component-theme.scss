@@ -1,0 +1,18 @@
+@import '../../../scss/shared/colors';
+
+@mixin people-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    a:hover {
+        color: mat-color($accent);
+    }
+    a:active {
+        color: mat-color($accent);
+    }
+
+
+}

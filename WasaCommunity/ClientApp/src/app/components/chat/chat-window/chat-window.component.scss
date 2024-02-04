@@ -1,0 +1,100 @@
+@import '../../../../scss/shared/colors';
+
+.messages-wrapper {
+    padding: 0;
+    overflow: hidden;
+    min-height: 100%;
+
+    .scrollable-wrapper {
+        overflow-y: auto;
+
+        .author-header {
+            padding-left: 1.5em;
+            border-radius: 0 5px 0 0;
+            min-height: 100px;
+            height: 100px;
+        }
+
+        .author-details {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-left: 1em;
+            display: flex;
+            align-items: center;
+
+            mat-icon {
+                margin-right: .2em;
+                color: $success;
+            }
+        }
+
+        .msg-container-base {
+            position: relative;
+        }
+    }
+
+    .send {
+        align-items: center;
+        border-radius: 5px 5px 0 0;
+        padding: .5em .5em .5em 1em;
+
+        textarea.mat-input-element {
+            background-color: white;
+            border-radius: 5px;
+        }
+
+        button:focus {
+            outline: none;
+        }
+
+    }
+
+    .mat-form-field-wrapper .mat-form-field-underline {
+        display: none !important;
+    }
+
+    .mat-form-field-infix {
+        border-top: 0;
+    }
+
+    .mat-form-field-appearance-legacy .mat-form-field-wrapper {
+        padding: 0;
+    }
+
+    // .avatar {
+    //     background-size: contain;
+    //     background-repeat: no-repeat;
+    //     border-radius: 50%;
+    //     width: 60px;
+    // }
+
+
+    .scroll::-webkit-scrollbar {
+        display: none;
+    }
+
+    .scroll-wrapper {
+        border-radius: 5px;
+        background-color: white;
+        padding: .3em 0 .5em .5em;
+    }
+
+
+    textarea.mat-input-element {
+        padding: 0;
+        color: black;
+    }
+
+
+}
+
+
+
+
+@media screen and (max-width: 915px) {
+    .scrollable-wrapper {
+        div.author-details {
+            font-size: 1em !important;
+        }
+    }
+}

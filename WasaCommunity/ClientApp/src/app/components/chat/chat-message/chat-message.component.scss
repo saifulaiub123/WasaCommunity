@@ -1,0 +1,44 @@
+@import '../../../../scss/shared/colors';
+@import '../../../../scss/shared/variables';
+
+.msg-container {
+    margin: 1em;
+    width: auto;
+    height: auto;
+    overflow-wrap: break-word;
+    clear: both;
+
+}
+.message {
+    padding: 1em;
+    margin-bottom: 1em;
+    @include border-radius(5px);
+
+    p {
+        margin: 0;
+    }
+
+    .text {
+        margin-bottom: .5em;
+        white-space: pre-wrap;
+    }
+
+    .time {
+        font-size: .8em;
+        text-align: right;
+        opacity: .6;
+    }
+}
+
+.msg-sent {
+    float: right;
+    max-width: 60%;
+
+}
+
+.msg-receive {
+    float: left;
+    max-width: 60%;
+}
+
+

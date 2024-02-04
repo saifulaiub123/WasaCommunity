@@ -1,0 +1,220 @@
+@import 'shared/typography';
+@import 'shared/colors';
+@import 'shared/variables';
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+}
+
+.page-content {
+    padding: 0 2em;
+}
+
+button:focus {
+    outline: none;
+}
+
+.avatar {
+    background-size: contain;
+    background-repeat: no-repeat;
+    border-radius: 50%;
+}
+
+.avatar-lg {
+    width: 85%;
+}
+
+.avatar-md {
+    width: 60px;
+}
+
+.avatar-sm {
+    width: 15%;
+}
+
+.avatar-xs {
+    width: 5%;
+}
+
+.avatar-maxwidth {
+    max-width: 85px;
+}
+
+.close-lg {
+    font-size: 2rem;
+    color: inherit;
+    text-shadow: inherit;
+    opacity: 1;
+    cursor: pointer;
+
+    :hover {
+        color: $warn;
+        opacity: 1 !important;
+    }
+}
+
+#close:hover {
+    color: $warn;
+    opacity: 1 !important;
+}
+
+.mat-pseudo-checkbox-checked::after {
+    top: 0.4px !important;
+    left: 0px !important;
+    width: 12px !important;
+    height: 7px !important;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+
+.roundedTable {
+    @include border-radius(4px);
+
+    mat-table,
+    mat-header-row,
+    mat-paginator {
+        @include border-radius(4px);
+    }
+
+}
+
+.logo {
+    opacity: .8;
+}
+
+.header {
+    padding-bottom: 1.5em;
+}
+
+.faded.mat-raised-button {
+    opacity: .8;
+}
+
+.mat-stroked-button.save {
+    color: $success;
+}
+
+// ***Search***
+
+// Outside box
+.search-wrapper {
+    border-radius: 4px;
+    width: 300px;
+    vertical-align: middle;
+    white-space: nowrap;
+    position: relative;
+}
+
+// Input Element
+.search-wrapper input.mat-input-element {
+    width: 300px;
+    height: 50px;
+    background: #2b303b;
+    border: none;
+    font-size: 10pt;
+    float: left;
+    color: #63717f;
+    padding-left: 45px;
+    -webkit-border-radius: 5px;
+    -moz-border-radius: 5px;
+    border-radius: 5px;
+
+    -webkit-transition: background .55s ease;
+    -moz-transition: background .55s ease;
+    -ms-transition: background .55s ease;
+    -o-transition: background .55s ease;
+    transition: background .55s ease;
+}
+
+.search-wrapper input.mat-input-element.dark {
+    background: #616161;
+    opacity: 1;
+}
+
+.search-wrapper input.mat-input-element.light {
+    background: #e0e0e0;
+}
+
+.search-wrapper input.mat-input-element.dark:focus {
+    color: #ffffff;
+    background: #000000;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.14);
+}
+
+.search-wrapper input.mat-input-element.light:focus {
+    color: #3a3c4c;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.14);
+}
+
+// Placeholder
+.search-wrapper input.mat-input-element.dark::placeholder {
+    color: $light-text !important;
+    opacity: .8;
+}
+
+.search-wrapper input.mat-input-element.light::placeholder {
+    color: $dark-text !important;
+}
+
+.search-wrapper input.mat-input-element.dark:focus::placeholder {
+    color: #000000 !important;
+}
+
+.search-wrapper input.mat-input-element.light:focus::placeholder {
+    color: #fff !important;
+}
+
+// Hover
+
+.search-wrapper input.mat-input-element.light:hover,
+.search-wrapper input.mat-input-element.light:focus,
+.search-wrapper input.mat-input-element.light:active {
+    outline: none;
+    background: #ffffff;
+}
+
+.search-wrapper input.mat-input-element.dark:hover,
+.search-wrapper input.mat-input-element.dark:focus,
+.search-wrapper input.mat-input-element.dark:active {
+    outline: none;
+    background: #000000;
+}
+
+input.mat-input-element:hover {
+    // background: rgba(255, 255, 255, .27);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.03);
+}
+
+
+
+// Search Icon
+.search-wrapper mat-icon.icon {
+    position: absolute;
+    margin-left: 17px;
+    z-index: 1;
+    opacity: .8;
+
+    .light {
+        color: #212121;
+    }
+
+    .dark {
+        color: #fff;
+    }
+}
+
+
+// Fix to the bug that caused expansion-panel to appear expanded while opening dialogs
+.ng-animating mat-expansion-panel mat-expansion-panel-header {
+    height: 48px;
+}
+
+.ng-animating mat-expansion-panel div.mat-expansion-panel-content {
+    height: 0px;
+    visibility: hidden;
+}

@@ -1,0 +1,172 @@
+<div id="app_container" [class.is-mobile]="mobileQuery.matches" class="nav-container">
+
+    <mat-toolbar color="primary" class="app-toolbar">
+        <button mat-icon-button (click)="mainNav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+        <img fxHide.lt-md="true" *ngIf="(isDarkTheme | async)" class="logo" (click)="router.navigateByUrl('/')"
+            src="{{whiteLogo}}" alt="Logo" />
+        <img fxHide.lt-md="true" *ngIf="!(isDarkTheme | async)" class="logo" (click)="router.navigateByUrl('/')"
+            src="{{blackLogo}}" alt="Logo" />
+
+        <span class="app-toolbar-spacer"></span>
+        <app-theme-picker [fxHide]="clientUsesSafari()" tooltip="{{'mainMenu.Theme' | translate}}"></app-theme-picker>
+
+        <button *ngIf="!isUserLoggedIn" mat-button (click)="router.navigateByUrl('/login')">
+            <mat-icon>lock_open</mat-icon>
+            <span>{{'mainMenu.Login' | translate}}</span>
+        </button>
+
+        <button *ngIf="isUserLoggedIn" class="side-button" mat-button [matMenuTriggerFor]="accountMenu"
+            matTooltip="{{'mainMenu.UserAccount' | translate}}">
+            <span>{{currentUser.fullName | split:' '}}</span>
+            <mat-icon class="menu-button">expand_more</mat-icon>
+        </button>
+        <mat-menu #accountMenu="matMenu">
+            <button mat-menu-item (click)="router.navigateByUrl('/settings')">
+                <mat-icon>person</mat-icon><span>{{'mainMenu.Profile' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="router.navigateByUrl('/settings#preferences')">
+                <mat-icon>settings</mat-icon><span>{{'mainMenu.Settings' | translate}}</span>
+            </button>
+            <button mat-menu-item (click)="logout()">
+                <mat-icon>lock</mat-icon><span>{{'mainMenu.Logout' | translate}}</span>
+            </button>
+        </mat-menu>
+
+        <button mat-icon-button (click)="secondNav.toggle()">
+            <mat-icon>menu</mat-icon>
+        </button>
+
+    </mat-toolbar>
+
+    <mat-sidenav-container [hasBackdrop]="false" class="app-sidenav-container">
+        <mat-sidenav #mainNav class="app-sidenav-nav mat-elevation-z3"
+            [mode]="(mobileQuery.matches || ipadQuery.matches) ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" (openedChange)="toggleSidenav($event)">
+            <mat-nav-list class="sidenav-typography" *ngIf="isUserLoggedIn">
+                <a mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink=""
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>dashboard</mat-icon>{{'mainMenu.Dashboard' | translate}}
+                </a>
+                <a mat-list-item routerLinkActive="active" routerLink="/people"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>people</mat-icon>{{'mainMenu.People' | translate}}
+                </a>
+                <a mat-list-item routerLinkActive="active" routerLink="/chat"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>chat</mat-icon><span class="mr-4">{{'mainMenu.Chat' | translate}}</span>
+                    <chat-notification></chat-notification>
+                </a>
+                <a mat-list-item routerLinkActive="active" routerLink="/alerts"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>notification_important</mat-icon><span
+                        class="mr-4">{{'mainMenu.Alerts' | translate}}</span>
+                    <alert-notification></alert-notification>
+                </a>
+                <mat-expansion-panel *ngIf="canViewUsers || canViewRoles || canViewUsers || canViewApplicationInsights"
+                    #admin [class.mat-elevation-z0]="!admin.expanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>security</mat-icon>{{'mainMenu.Admin' | translate}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewUsers" routerLink="/admin/users"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>people</mat-icon>{{'mainMenu.User' | translate}}
+                    </a>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewRoles" routerLink="/admin/roles"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>assignment_ind</mat-icon>{{'mainMenu.Roles' | translate}}
+                    </a>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewGroups" routerLink="/admin/groups"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>group</mat-icon>{{'mainMenu.Groups' | translate}}
+                    </a>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewApplicationInsights"
+                        routerLink="/admin/application-insights"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>dashboard</mat-icon>App Insights
+                    </a>
+                </mat-expansion-panel>
+            </mat-nav-list>
+            <mat-nav-list class="sidenav-typography">
+                <a mat-list-item routerLinkActive="active" routerLink="/about"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>info</mat-icon>{{'mainMenu.About' | translate}}
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav #secondNav class="app-sidenav-nav mat-elevation-z3"
+            [mode]="mobileQuery.matches ? 'over' : 'side'"
+            [fixedInViewport]="mobileQuery.matches" fixedTopGap="56" (openedChange)="toggleSidenav($event)"
+            position="end">
+            <mat-nav-list class="sidenav-typography" *ngIf="isUserLoggedIn">
+                <a mat-list-item routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" routerLink=""
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>dashboard</mat-icon>{{'mainMenu.Dashboard' | translate}}
+                </a>
+                <a mat-list-item routerLinkActive="active" routerLink="/people"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>people</mat-icon>{{'mainMenu.People' | translate}}
+                </a>
+                <a mat-list-item routerLinkActive="active" routerLink="/chat"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>chat</mat-icon><span class="mr-4">{{'mainMenu.Chat' | translate}}</span>
+                    <chat-notification></chat-notification>
+                </a>
+                <a mat-list-item routerLinkActive="active" routerLink="/alerts"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>notification_important</mat-icon><span
+                        class="mr-4">{{'mainMenu.Alerts' | translate}}</span>
+                    <alert-notification></alert-notification>
+                </a>
+                <mat-expansion-panel *ngIf="canViewUsers || canViewRoles || canViewUsers || canViewApplicationInsights"
+                    #admin [class.mat-elevation-z0]="!admin.expanded">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            <mat-icon>security</mat-icon>{{'mainMenu.Admin' | translate}}
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewUsers" routerLink="/admin/users"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>people</mat-icon>{{'mainMenu.User' | translate}}
+                    </a>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewRoles" routerLink="/admin/roles"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>assignment_ind</mat-icon>{{'mainMenu.Roles' | translate}}
+                    </a>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewGroups" routerLink="/admin/groups"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>group</mat-icon>{{'mainMenu.Groups' | translate}}
+                    </a>
+                    <a mat-list-item routerLinkActive="active" *ngIf="canViewApplicationInsights"
+                        routerLink="/admin/application-insights"
+                        (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                        <mat-icon>dashboard</mat-icon>App Insights
+                    </a>
+                </mat-expansion-panel>
+            </mat-nav-list>
+            <mat-nav-list class="sidenav-typography">
+                <a mat-list-item routerLinkActive="active" routerLink="/about"
+                    (click)="(mobileQuery.matches || ipadQuery.matches) && mainNav.close()">
+                    <mat-icon>info</mat-icon>{{'mainMenu.About' | translate}}
+                </a>
+            </mat-nav-list>
+        </mat-sidenav>
+
+        <mat-sidenav-content>
+            <div fxLayout="column" fxFill>
+                <div id="mainContent" fxFlex>
+                    <router-outlet></router-outlet>
+                </div>
+                <!-- <app-footer></app-footer> -->
+            </div>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+
+</div>
+
+<ngx-toasta></ngx-toasta>

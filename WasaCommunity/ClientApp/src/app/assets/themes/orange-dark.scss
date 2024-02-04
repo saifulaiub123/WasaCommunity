@@ -1,0 +1,18 @@
+@import '../../app-theme';
+
+$primary: mat-palette($mat-grey, 700);
+$accent: mat-palette($mat-deep-orange, 500);
+$warn: mat-palette($mat-red, 500);
+
+$theme: mat-dark-theme($primary, $accent, $warn);
+
+.mat-card-subtitle, .mat-card-subtitle a {
+    color: rgba(255,255,255,1) !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: mat-color($accent, 500) !important;
+}
+
+@include angular-material-theme($theme);
+@include wasacommunity-app-theme($theme);

@@ -1,0 +1,38 @@
+<div class="page-content">
+    <app-page-header title="Dashboard" icon="dashboard"></app-page-header>
+    <mat-progress-bar color="accent" *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+    <div class="mt-4" *ngIf="!loadingIndicator" [@fadeInOut] fxLayoutGap.xs="7%" fxLayoutGap.gt-xs="2%" fxLayout.xs="column" fxLayout.gt-xs="row wrap">
+        <div *ngIf="configurations.showInvoicedChart" class="bottom-space" fxFlex.xs="100" fxFlex.sm="100"
+            fxFlex.md="48" fxFlex.gt-md="48">
+            <button mat-icon-button class="close-sm" aria-label="Close" title="Close" style="float: right;"
+                (click)="configurations.showInvoicedChart = false">
+                <mat-icon id="close">close</mat-icon>
+            </button>
+            <div class="clearfix"></div>
+            <invoiced-chart [invoices]="invoices"></invoiced-chart>
+
+        </div>
+
+        <div *ngIf="configurations.showOrderstockChart" class="bottom-space" fxFlex.xs="100" fxFlex.sm="100"
+            fxFlex.md="48" fxFlex.gt-md="48">
+            <button mat-icon-button class="close-sm" aria-label="Close" title="Close" style="float: right;"
+                (click)="configurations.showOrderstockChart = false">
+                <mat-icon id="close">close</mat-icon>
+            </button>
+            <div class="clearfix"></div>
+            <orderstock-chart [orderstock]="orderstock"></orderstock-chart>
+        </div>
+
+        <div *ngIf="configurations.showOrdersByPersonChart" class="bottom-space" fxFlex.xs="100" fxFlex.sm="100"
+            fxFlex.md="48" fxFlex.gt-md="48">
+            <button mat-icon-button class="close-sm" aria-label="Close" title="Close" style="float: right;"
+                (click)="configurations.showOrdersByPersonChart = false">
+                <mat-icon id="close">close</mat-icon>
+            </button>
+            <div class="clearfix"></div>
+
+            <ordersbyperson-chart [chartData]="ordersByPersons"></ordersbyperson-chart>
+        </div>
+    </div>
+
+</div>

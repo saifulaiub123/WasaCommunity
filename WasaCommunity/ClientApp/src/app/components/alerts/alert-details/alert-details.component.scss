@@ -1,0 +1,20 @@
+.dialog-content {
+    max-height: 70vh;
+    padding: 1em;
+}
+
+::ng-deep .ps__thumb-y {
+    outline: none !important;
+}
+
+.heading {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+p {
+    white-space: pre-wrap;
+}
+

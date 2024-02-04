@@ -1,0 +1,80 @@
+@import '../../../../scss/shared/colors';
+
+.conversation-preview {
+    height: 100px;
+    max-height: 100px;
+
+    .left {
+        margin: 1em 0 1em 1.5em;
+    }
+
+    .middle {
+        overflow: hidden;
+        h3 {
+            max-height: 40px;
+            margin-left: 2.1rem;
+            font-size: .9em;
+            font-weight: 500;
+            overflow: hidden;
+            display: inline !important;
+
+            mat-icon {
+                margin-left: .3rem;
+                margin-right: .3rem;
+                color: $success;
+            }
+        }
+        h5 {
+            max-height: 40px;
+            font-size: .8em;
+            margin-left: 2.1rem;
+            overflow: hidden;
+        }
+    }
+
+    .right {
+        h6 {
+            font-size: .8em;
+            margin-top: .5em;
+            margin-right: .5em;
+            font-weight: normal;
+        }
+    }
+
+}
+
+.dark.conversation-preview:hover {
+    cursor: pointer;
+    background-color: rgba($color: #e64a19, $alpha: 0.8);
+}
+
+.light.conversation-preview:hover {
+    cursor: pointer;
+    background-color: #b0bec5;
+}
+
+.dark.selected {
+    background-color: rgba($color: #e64a19, $alpha: 0.8);
+
+}
+
+.light.selected {
+    background-color: #b0bec5;
+}
+
+mat-icon {
+    font-size: 1.2em;
+}
+
+mat-icon.dark {
+    color: $dark-accent;
+}
+
+mat-icon.light {
+    color: $light-accent;
+}
+
+
+
+
+

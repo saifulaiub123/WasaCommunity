@@ -1,0 +1,223 @@
+{
+  "app": {
+    "Welcome": "Välkommen",
+    "Notifications": "Notifikationer",
+    "New": "Ny"
+  },
+  "form": {
+    "ErrorCaption": "Information saknas",
+    "ErrorMessage": "Du har skrivit in ogiltig eller otillräcklig information. Vänligen justera eventuella fel och försök igen."
+  },
+  "mainMenu": {
+    "Home": "Startsida",
+    "Appointments": "Möten",
+    "Customers": "Kunder",
+    "People": "Personer",
+    "Chat": "Chatt",
+    "Alerts": "Alerts",
+    "Admin": "Admin",
+    "User": "Användare",
+    "Roles": "Roller",
+    "Groups": "Grupper",
+    "About": "Om",
+    "Logout": "Logga ut",
+    "Login": "Logga in",
+    "Account": "Konto",
+    "UserAccount": "Användare",
+    "Profile": "Profil",
+    "Settings": "Inställningar",
+    "Theme": "Välj ett tema"
+  },
+  "pageHeader": {
+    "Dashboard": "Dashboard",
+    "Customers": "Kunder",
+    "Chat": "Chatt",
+    "Alerts": "Alerts",
+    "Orders": "Order",
+    "NotFound": "Kunde ej hittas",
+    "About": "Om",
+    "Settings": "Inställningar",
+    "Users": "Användare",
+    "Roles": "Roller",
+    "Groups": "Grupper"
+  },
+  "home": {
+    "NoWidgets1": "Du har inga widgets. Gå till",
+    "NoWidgets2": "för att konfigurera tillgängliga widgets",
+    "StatisticsTitle": "Viktiga saker"
+  },
+  "notFound": {
+    "404": "404",
+    "pageNotFound": "Sidan du letar efter finns inte",
+    "backToHome": "Tillbaka"
+  },
+  "settings": {
+    "tab": {
+      "Profile": "Profil",
+      "Preferences": "Inställningar",
+      "Users": "Användare",
+      "Roles": "Roller"
+    },
+    "description": {
+      "UserProfile": "Ändra din profil",
+      "UserPreferences": "Ändra dina inställningar",
+      "UserDepartments": "Avdelningar",
+      "UsersManagement": "Konfigurera alla användare",
+      "RolesManagement": "Konfigurera användares roller",
+      "GroupsManagement": "Konfigurera alla grupper"
+    }
+  },
+  "preferences": {
+    "SavePreferences": "Spara inställningar?",
+    "SavePreferencesHint": "Spara dina personliga inställningar så att du har dem nästa gång du loggar in",
+    "ReloadPreferences": "Uppdatera inställningar?",
+    "ReloadPreferencesHint": "Återställ till senast sparade ändringar (icke sparade ändringar försvinner)",
+    "ResetPreferences": "Återställ inställningar?",
+    "ResetPreferencesHint": "Återställ till standardinställningar",
+    "Language": "Språk",
+    "English": "Engelska",
+    "German": "Tyska",
+    "Swedish": "Svenska",
+    "LanguageHint": "Välj det språk du vill ha för ditt konto",
+    "HomePage": "Startsida",
+    "Dashboard": "Dashboard",
+    "Customers": "Kunder",
+    "People": "Personer",
+    "Chat": "Chatt",
+    "Alerts": "Alerts",
+    "Products": "Produkter",
+    "Orders": "Ordrar",
+    "About": "Om",
+    "Settings": "Inställningar",
+    "HomePageHint": "Välj den sida som du automatiskt vill hamna på vid login",
+    "InvoicedChart": "Invoiced Amount",
+    "OrderstockChart": "Orderstock",
+    "OrdersByPersonChart": "Orders By Person",
+    "ResetDefault": "Återställ",
+    "SetDefault": "Återställ till standardinställningar"
+
+  },
+  "users": {
+    "management": {
+      "Search": "Sök efter användare",
+      "NewUser": "Ny användare",
+      "Edit": "Redigera användare",
+      "Delete": "Ta bort användare",
+      "EditUser": "Redigera Användare \"{{name}}\"",
+      "Title": "Titel",
+      "UserName": "Användarnamn",
+      "FullName": "För och Efternamn",
+      "Email": "Mejladdress",
+      "Roles": "Roller",
+      "PhoneNumber": "Telefonnummer"
+    },
+    "editor": {
+      "JobTitle": "Jobb titel",
+      "UserName": "Användarnamn",
+      "UserNameRequired": "Användarnamn är obligatoriskt. (minst 2 och max 200 tecken)",
+      "Password": "Lösenord",
+      "PasswordHint": "Ditt lösenord krävs för att ändra användarnamn",
+      "CurrentPasswordRequired": "Nuvarande lösenord krävs",
+      "Email": "Mejladdress",
+      "EmailRequired": "Mejladdress krävs (max 200 tecken)",
+      "InvalidEmail": "Mejladdress ej giltig",
+      "ChangePassword": "Ändra Lösenord",
+      "CurrentPassword": "Nuvarande Lösenord",
+      "NewPassword": "Nytt Lösenord",
+      "NewPasswordRequired": "Nytt Lösenord krävs",
+      "NewPasswordRules": "Det nya lösenordet måste innehålla minst: en stor bokstav, en liten bokstav, en siffra, och ett specialtecken",
+      "ConfirmPassword": "Bekräfta Lösenord",
+      "ConfirmationPasswordRequired": "Bekräfta Lösenord krävs",
+      "PasswordMismatch": "Lösenorden stämmer ej överens",
+      "Roles": "Roller",
+      "FullName": " För och Efternamn",
+      "RoleRequired": " Roll krävs",
+      "PhoneNumber": "Telefonnummer",
+      "Enabled": "Aktiv",
+      "Unblock": "Ta bort blockering",
+      "Close": "Stäng",
+      "Edit": "Redigera",
+      "Cancel": "Avbryt",
+      "Save": "Spara",
+      "Saving": "Sparar..."
+    },
+    "communication": {
+      "Chat": "Chatta",
+      "Profile": "Profil"
+    }
+  },
+  "roles": {
+    "management": {
+      "Search": "Sök efter roller...",
+      "NewRole": "Ny Roll",
+      "Edit": "Redigera",
+      "Details": "Detaljer",
+      "Delete": "Ta Bort",
+      "RoleDetails": "Roll Detaljer \"{{name}}\"",
+      "EditRole": "Ändra Roll \"{{name}}\"",
+      "Name": "Namn",
+      "Description": "Beskrivning",
+      "Users": "Användare"
+    },
+    "editor": {
+      "Name": "Namn:",
+      "Description": "Beskrivning:",
+      "RoleNameRequired": "Roll Namn krävs. (minst 2 och max 200 tecken)",
+      "SelectAll": "Välj alla",
+      "SelectNone": "Välj ingen",
+      "Close": "Stäng",
+      "Cancel": "Avbryt",
+      "Save": "Spara",
+      "Saving": "Sparar..."
+    }
+  },
+  "groups": {
+    "management": {
+      "Search": "Search for group...",
+      "NewGroup": "New Group",
+      "Edit": "Edit",
+      "Details": "Details",
+      "Delete": "Delete",
+      "GroupDetails": "Group Details \"{{name}}\"",
+      "EditGroup": "Edit Group \"{{name}}\"",
+      "Name": "Name",
+      "Description": "Description",
+      "Users": "Users"
+    },
+    "editor": {
+      "Name": "Name:",
+      "Description": "Description:",
+      "GroupNameRequired": "Group name is required (minimum of 2 and maximum of 200 characters)",
+      "SelectAll": "Select all",
+      "SelectNone": "Select none",
+      "Close": "Close",
+      "Cancel": "Cancel",
+      "Save": "Save",
+      "Saving": "Saving..."
+    }
+  },
+  "notifications": {
+    "Delete": "Ta bort notifikation",
+    "Pin": "Fäst notifikation",
+    "Date": "Datum",
+    "Notification": "Notifikation"
+  },
+  "commands": {
+    "Edit": "Redigera",
+    "Save": "Spara",
+    "Cancel": "Avbryt",
+    "Reset": "Återställ",
+    "Reload": "Ladda om"
+  },
+  "tooltips": {
+    "Chat": "Skicka ett chat-meddelande",
+    "Profile": "Visa profil",
+    "Calendar": "Visa kalender",
+    "InvoicedChart": "Visa faktuerat",
+    "OrderstockChart": "Visa orderstock",
+    "OrdersByPersonChart": "Visa ordrar per person"
+  },
+  "alerts": {
+    "Search": "Search for author"
+  }
+}

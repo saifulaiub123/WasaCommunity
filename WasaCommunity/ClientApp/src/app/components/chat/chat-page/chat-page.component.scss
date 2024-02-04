@@ -1,0 +1,22 @@
+@import '../../../../scss/shared/variables';
+
+.mat-raised-button {
+    border-radius: 5px;
+}
+
+.container-fluid {
+    height: 70vh;
+    @include border-radius(5px);
+}
+
+::ng-deep .mat-autocomplete-panel {
+    overflow-x: hidden !important;
+    overflow-y: hidden !important;
+}
+
+::ng-deep .mat-form-field-infix {
+    width: 15em !important;
+}
+
+
+

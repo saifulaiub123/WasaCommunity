@@ -1,0 +1,43 @@
+<div *ngIf="!loadingIndicator" class="header mb-2 p-4" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="heading">
+            <div class="avatar-wrapper mr-4">
+                <img class="avatar avatar-md mat-elevation-z3" [src]="getAvatarForUser(data.user.imageUrl)" alt="User Avatar">
+            </div>
+            <h3 [ngStyle.xs]="{ 'font-size.em': 1 }" class="ml-1 mt-2 mb-0">{{ data.user.fullName }}</h3>
+        </div>
+        <mat-icon id="close" fxFlexAlign="baseline" class="close-lg" (click)="close()">close</mat-icon>
+    </div>
+<perfect-scrollbar>
+        <div class="dialog-content" *ngIf="!loadingIndicator">
+
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="customerNumber">
+                <mat-header-cell [fxHide.xs]="true" *matHeaderCellDef mat-sort-header>Customer Number</mat-header-cell>
+                <mat-cell [fxHide.xs]="true" *matCellDef="let row"> {{row.customerNumber}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="customerName">
+                <mat-header-cell [fxHide.xs]="true" *matHeaderCellDef mat-sort-header>Customer Name</mat-header-cell>
+                <mat-cell [fxHide.xs]="true" *matCellDef="let row"> {{row.customerName}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="orderNumber">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Order Number</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.orderNumber}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="orderAmount">
+                <mat-header-cell *matHeaderCellDef mat-sort-header>Amount</mat-header-cell>
+                <mat-cell *matCellDef="let row"> {{row.orderAmount}} </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+
+    </div>
+</perfect-scrollbar>

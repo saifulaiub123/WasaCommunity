@@ -1,0 +1,50 @@
+<div class="header mb-2" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="heading">
+        <div class="avatar-wrapper" fxFlex="15" fxFlex.xs="30">
+            <img class="avatar avatar-lg" [src]="getAvatarForUser(data.user)" alt="User Avatar">
+        </div>
+        {{data.user.fullName}}
+    </div>
+    <mat-icon id="close" fxFlexAlign="baseline" class="close-lg" (click)="close()">close</mat-icon>
+</div>
+
+    <dx-scheduler [ngClass.xs]="{'hide-view-switcher-label': true}"
+    [dataSource]="data.user.appointments"
+    [views]='["day", "workWeek", "month"]'
+    currentView="month"
+    firstDayOfWeek="1"
+    [currentDate]="currentDate"
+    [showAllDayPanel]="true"
+    [height]="600"
+    appointmentTemplate="appointment-template"
+    appointmentTooltipTemplate="tooltip-template"
+    timeCellTemplate="timeCellTemplate"
+    dropDownAppointmentTemplate="tooltip-template"
+    [maxAppointmentsPerCell]="1"
+    [showCurrentTimeIndicator]="true"
+    [shadeUntilCurrentTime]="true"
+    (onContentReady)="onContentReady($event)"
+    (onAppointmentDblClick)="onAppointmentClick($event)"
+    [editing]="false">
+
+        <div *dxTemplate="let appointment of 'appointment-template'">
+            <div class='appointment' id="custom-appointment">
+                <div class="appointment-text">{{appointment.text}}</div>
+                <div *ngIf="!appointment.allDay" class="appointment-dates">
+                    {{(appointment.startDate | date:'HH:mm') + ' - ' + (appointment.endDate | date:'HH:mm')}}
+                </div>
+            </div>
+        </div>
+
+        <div *dxTemplate="let appointment of 'tooltip-template'">
+            {{ appointment.text }}<br/>
+            {{ appointment.startDate | date:'EEEE MMM, dd HH:mm'}} - {{ appointment.endDate | date:'EEEE MMM, dd HH:mm' }}
+        </div>
+
+        <div *dxTemplate="let time of 'timeCellTemplate'">
+                {{formatTime(time.text)}}
+        </div>
+
+    </dx-scheduler>
+
+

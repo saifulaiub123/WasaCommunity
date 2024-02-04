@@ -1,0 +1,34 @@
+<mat-card [@fadeInOut] class="p-3 pb-4" fxLayout="column">
+    <div fxFlex="12" fxLayout="row" fxLayoutAlign="end start">
+        <div fxLayout="row" fxLayoutAlign="end center" fxFlex="45">
+            <span class="time" fxFlex>{{alertMessage.sentAt | fromNow}}</span>
+        </div>
+        <div fxLayout="row" fxLayoutAlign="end center" fxFlex="55" [ngSwitch]="alertRecipient.isRead" (click)="toggleIsRead(alertRecipient)">
+            <mat-icon *ngSwitchCase="true" class="read" color="primary">drafts</mat-icon>
+            <mat-icon *ngSwitchCase="false" color="accent">markunread</mat-icon>
+        </div>
+    </div>
+
+    <mat-card-content fxFlex="58" fxLayout="row">
+        <div class="avatar-wrapper" fxFlex="25">
+            <img class="avatar avatar-lg mat-elevation-z3" [src]="getAvatarForAlert(alertMessage)" alt="User Avatar">
+        </div>
+
+        <div class="text-wrapper" fxFlex="65">
+            <h3 class="wrap ml-0" snEllipsis>{{alertMessage.title}}</h3>
+            <p snEllipsis>{{alertMessage.body}}</p>
+        </div>
+    </mat-card-content>
+
+    <mat-card-actions class="mt-1" fxFlex="30" fxLayoutAlign="end center">
+        <button class="mat-elevation-z3 m-1" ngClass.gt-md="mr-4"
+            mat-stroked-button *ngIf="!alertRecipient.isDeleted" color="warn" (click)="delete()">
+            <mat-icon>delete</mat-icon><span class="button-text ml-2">Delete</span>
+        </button>
+        <button class="mat-elevation-z3 m-1" ngClass.gt-md="mr-5"
+            mat-stroked-button color="accent" (click)="showAlertDetails()">
+            <mat-icon>open_in_new</mat-icon><span class="button-text ml-2">Details</span>
+        </button>
+    </mat-card-actions>
+
+</mat-card>

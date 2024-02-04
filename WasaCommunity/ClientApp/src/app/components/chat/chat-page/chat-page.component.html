@@ -1,0 +1,51 @@
+<div class="page-content mb-5">
+
+    <div class="top mb-4" fxLayout.xs="column" fxLayout.gt-xs="row" fxLayoutAlign="start center" fxLayoutAlign.xs="start start">
+        <app-page-header title="Chat" icon="chat" class="mr-3"></app-page-header>
+        <button [@fadeInOut] *ngIf="!loadingIndicator" mat-raised-button
+                (click)="showMessageSuggestions = !showMessageSuggestions"
+                [ngStyle.xs]="{ 'margin-bottom.px': 30 }"
+                class="mr-4 faded" color="accent">
+                <mat-icon>add_comment</mat-icon><span class="button-text ml-2">Create new message...</span>
+        </button>
+
+        <form [@fadeInOut] *ngIf="showMessageSuggestions">
+            <mat-form-field>
+                <input type="text" placeholder="Select new recipient" matInput [formControl]="chatRecipients"
+                    [matAutocomplete]="auto">
+                <mat-autocomplete #auto="matAutocomplete">
+                    <perfect-scrollbar>
+                        <div>
+                            <mat-option
+                                (onSelectionChange)="newMessageThreadForUser(user)"
+                                (click)="newMessageThreadForUser(user)"
+                                *ngFor="let user of filteredMessageRecipients | async; trackBy: trackByFunc"
+                                [value]="user.fullName">
+                                <img class="avatar avatar-sm" [src]="getAvatarForUser(user)" alt="User Avatar">
+                                {{user.fullName}}
+                            </mat-option>
+                        </div>
+                    </perfect-scrollbar>
+                </mat-autocomplete>
+            </mat-form-field>
+        </form>
+
+    </div>
+
+    <mat-progress-bar color="accent" *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+
+    <div [@fadeInOut] *ngIf="!loadingIndicator" class="container-fluid mat-elevation-z3 p-0" fxLayout="row" fxLayout.xs="column">
+        <div [fxHide.xs]="currentThread?.id" fxFlex="1 0 270px" class="chat-threads">
+            <perfect-scrollbar>
+                <chat-threads [threads]="chatThreads"></chat-threads>
+            </perfect-scrollbar>
+        </div>
+        <div *ngIf="currentThread === undefined" class="messages-wrapper" fxFlex="4 1 75%" fxLayout="column"></div>
+        <div [fxHide.gt-xs]="true" [fxShow.xs]="currentThread?.id" fxFlex="100"><mat-icon class="p-2" (click)="back()">arrow_back</mat-icon></div>
+        <chat-window *ngIf="currentThread !== undefined" [currentThread]="currentThread" class="messages-wrapper"
+            fxFlex="4 1 75%" fxLayout="column" [fxShow.xs]="currentThread?.id" fxFlex.xs="100%"
+            >
+        </chat-window>
+    </div>
+
+</div>

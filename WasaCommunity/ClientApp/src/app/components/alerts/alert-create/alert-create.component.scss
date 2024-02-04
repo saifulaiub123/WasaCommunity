@@ -1,0 +1,34 @@
+
+.heading {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+#alert-btn-icon {
+    font-size: 1em;
+    height: 1em;
+    width: 1em;
+}
+
+h3 {
+    font-size: 1em;
+    display: inline;
+    margin-left: 1em;
+}
+
+h3.fullname-mobile {
+    display: inline-flex;
+    max-width: 60px;
+    max-height: 30px;
+}
+
+.mat-vertical-stepper-header{
+    pointer-events: none !important;
+}
+
+.scroll::-webkit-scrollbar {
+    display: none;
+}
+

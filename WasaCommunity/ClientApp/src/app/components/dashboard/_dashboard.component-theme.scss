@@ -1,0 +1,16 @@
+@import '../../../scss/shared/colors';
+
+@mixin dashboard-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+    $background: map-get($theme, background);
+    $foreground: map-get($theme, foreground);
+
+    #close:hover {
+        color: mat-color($warn);
+        opacity: 1 !important;
+    }
+
+
+}

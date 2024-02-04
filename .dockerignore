@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+**/.git/
+**/.vs/
+**/Dockerfile*
+**/.dockerignore*
+**/docker-compose*.yml
+**/*.user
+WasaCommunity/ClientApp/node_modules
+WasaCommunity/ClientApp/dist
+**/.vscode
+**/.gitignore
+**/README

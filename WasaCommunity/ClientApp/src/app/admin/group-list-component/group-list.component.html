@@ -1,0 +1,66 @@
+<div class="page-content mb-5">
+
+    <div class="top mb-4" fxLayout.xs="column" fxLayout.gt-xs="row">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign.gt-xs="space-between center" fxFlex="100">
+            <app-page-header title="Groups" icon="group"></app-page-header>
+
+            <div class="search-wrapper mat-elevation-z3 mr-4" [@fadeInOut] *ngIf="!loadingIndicator" fxLayout="row"
+                fxLayoutAlign="start center">
+                <mat-icon class="icon">search</mat-icon>
+                <input [ngClass]="isDarkTheme ? 'dark' : 'light'" #search [(ngModel)]="searchTerm" matInput
+                (keyup)="applyFilter($event.target.value)" placeholder="{{'groups.management.Search' | translate}}">
+            </div>
+        </div>
+    </div>
+
+    <div [@fadeInOut] class="roundedTable mat-elevation-z3 mt-4">
+        <mat-progress-bar *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+        <mat-table [dataSource]="dataSource" matSort>
+
+            <ng-container matColumnDef="groupName">
+                <mat-header-cell *matHeaderCellDef mat-sort-header> {{'groups.management.Name' | translate}}
+                </mat-header-cell>
+                <mat-cell *matCellDef="let group"> {{group.name}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="users">
+                <mat-header-cell *matHeaderCellDef mat-sort-header fxFlex="60px">
+                    {{'groups.management.Users' | translate}} </mat-header-cell>
+                <mat-cell *matCellDef="let group" fxFlex="60px"> {{group.usersCount}} </mat-cell>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <mat-header-cell *matHeaderCellDef fxFlex="170px">
+                    <button class="mat-elevation-z3 mr-1 ml-1" *ngIf="canManageGroups" mat-stroked-button color="accent"
+                        matTooltip="{{'groups.management.NewGroup' | translate}}" (click)="editGroup(group, users)">
+                        <mat-icon class="mat-button-icon">add</mat-icon>
+                        <span>{{'groups.management.NewGroup' | translate}} </span>
+                    </button>
+                </mat-header-cell>
+                <mat-cell *matCellDef="let group" fxFlex="150px">
+                    <button *ngIf="!canManageGroups" mat-icon-button
+                        matTooltip="{{'groups.management.Details' | translate}}" (click)="editGroup(group, users)">
+                        <mat-icon>more_vert</mat-icon>
+                    </button>
+                    <button *ngIf="canManageGroups" mat-icon-button
+                        matTooltip="{{'groups.management.Edit' | translate}}" (click)="editGroup(group, users)">
+                        <mat-icon>edit</mat-icon>
+                    </button>
+                    <button *ngIf="canManageGroups" mat-icon-button
+                        matTooltip="{{'groups.management.Delete' | translate}}" (click)="confirmDelete(group, users)">
+                        <mat-icon color="warn">delete</mat-icon>
+                    </button>
+                </mat-cell>
+            </ng-container>
+
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns;">
+            </mat-row>
+        </mat-table>
+
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]"></mat-paginator>
+    </div>
+
+
+
+</div>

@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<testsuite name="Chrome 70.0.3508 (Windows 10 0.0.0)" package="" timestamp="2018-10-23T17:06:18" id="0" hostname="DESKTOP-RBKDG0O" tests="4" errors="0" failures="3" time="2.636">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/70.0.3508.0 Safari/537.36"/>
+  </properties>
+  <testcase name="AppComponent should create the app" time="1.105" classname="Chrome_70_0_3508_(Windows_10_0_0_0).AppComponent">
+    <failure type="">http://js.devexpress.com/error/18_1/E0021
+Error: E0021 - Unknown theme is set: null. See:
+    at makeError node_modules/devextreme/core/utils/error.js:51:1)
+    at Object.Error node_modules/devextreme/core/utils/error.js:19:1)
+    at Object.current node_modules/devextreme/ui/themes.js:202:1)
+    at ThemeManager../src/app/shared/theme-manager.ts.ThemeManager.installTheme src/app/shared/theme-manager.ts:50:14)
+    at ThemePicker../src/app/shared/theme-picker-component/theme-picker.component.ts.ThemePicker.setTheme src/app/shared/theme-picker-component/theme-picker.component.ts:43:31)
+    at new ThemePicker src/app/shared/theme-picker-component/theme-picker.component.ts:34:14)
+    at createClass node_modules/@angular/core/fesm5/core.js:9303:1)
+    at createDirectiveInstance node_modules/@angular/core/fesm5/core.js:9186:1)
+    at createViewNodes node_modules/@angular/core/fesm5/core.js:10406:1)
+    at callViewAction node_modules/@angular/core/fesm5/core.js:10722:1)
+</failure>
+  </testcase>
+  <testcase name="AppComponent should have as title 'Wasa Community'" time="0.799" classname="Chrome_70_0_3508_(Windows_10_0_0_0).AppComponent">
+    <failure type="">http://js.devexpress.com/error/18_1/E0021
+Error: E0021 - Unknown theme is set: null. See:
+    at makeError node_modules/devextreme/core/utils/error.js:51:1)
+    at Object.Error node_modules/devextreme/core/utils/error.js:19:1)
+    at Object.current node_modules/devextreme/ui/themes.js:202:1)
+    at ThemeManager../src/app/shared/theme-manager.ts.ThemeManager.installTheme src/app/shared/theme-manager.ts:50:14)
+    at ThemePicker../src/app/shared/theme-picker-component/theme-picker.component.ts.ThemePicker.setTheme src/app/shared/theme-picker-component/theme-picker.component.ts:43:31)
+    at new ThemePicker src/app/shared/theme-picker-component/theme-picker.component.ts:34:14)
+    at createClass node_modules/@angular/core/fesm5/core.js:9303:1)
+    at createDirectiveInstance node_modules/@angular/core/fesm5/core.js:9186:1)
+    at createViewNodes node_modules/@angular/core/fesm5/core.js:10406:1)
+    at callViewAction node_modules/@angular/core/fesm5/core.js:10722:1)
+</failure>
+  </testcase>
+  <testcase name="AppComponent should render 'Wasa' in a p tag" time="0.712" classname="Chrome_70_0_3508_(Windows_10_0_0_0).AppComponent">
+    <failure type="">http://js.devexpress.com/error/18_1/E0021
+Error: E0021 - Unknown theme is set: null. See:
+    at makeError node_modules/devextreme/core/utils/error.js:51:1)
+    at Object.Error node_modules/devextreme/core/utils/error.js:19:1)
+    at Object.current node_modules/devextreme/ui/themes.js:202:1)
+    at ThemeManager../src/app/shared/theme-manager.ts.ThemeManager.installTheme src/app/shared/theme-manager.ts:50:14)
+    at ThemePicker../src/app/shared/theme-picker-component/theme-picker.component.ts.ThemePicker.setTheme src/app/shared/theme-picker-component/theme-picker.component.ts:43:31)
+    at new ThemePicker src/app/shared/theme-picker-component/theme-picker.component.ts:34:14)
+    at createClass node_modules/@angular/core/fesm5/core.js:9303:1)
+    at createDirectiveInstance node_modules/@angular/core/fesm5/core.js:9186:1)
+    at createViewNodes node_modules/@angular/core/fesm5/core.js:10406:1)
+    at callViewAction node_modules/@angular/core/fesm5/core.js:10722:1)
+</failure>
+  </testcase>
+  <testcase name="Footer should have a link to author" time="0.02" classname="Chrome_70_0_3508_(Windows_10_0_0_0).Footer"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

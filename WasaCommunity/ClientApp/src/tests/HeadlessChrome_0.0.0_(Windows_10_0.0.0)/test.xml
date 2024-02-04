@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<testsuite name="HeadlessChrome 0.0.0 (Windows 10 0.0.0)" package="" timestamp="2018-10-23T17:06:39" id="0" hostname="DESKTOP-RBKDG0O" tests="1" errors="0" failures="0" time="0.075">
+  <properties>
+    <property name="browser.fullName" value="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/70.0.3508.0 Safari/537.36"/>
+  </properties>
+  <testcase name="Footer should have a link to author" time="0.075" classname="HeadlessChrome_0_0_0_(Windows_10_0_0_0).Footer"/>
+  <system-out>
+    <![CDATA[
+]]>
+  </system-out>
+  <system-err/>
+</testsuite>

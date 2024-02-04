@@ -1,0 +1,70 @@
+<div class="page-content">
+    <div class="mb-4" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between center" fxLayoutAlign.xs="start start">
+        <app-page-header title="People" icon="people"></app-page-header>
+        <div class="search-wrapper mat-elevation-z3 mr-5" [@fadeInOut] *ngIf="!loadingIndicator"
+            fxLayout="row" fxLayoutAlign="start center" >
+            <mat-icon class="icon">search</mat-icon>
+            <input [ngClass]="isDarkTheme ? 'dark' : 'light'" #search [(ngModel)]="searchTerm" matInput placeholder="{{'users.management.Search' | translate}}">
+        </div>
+    </div>
+
+    <div [@fadeInOut] class="user-cards-wrapper" fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutGap.xs="7%"
+        fxLayoutGap.gt-xs="2%">
+        <mat-progress-bar color="accent" *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+        <ng-container *ngFor="let user of users | usersFilter:searchTerm trackBy: trackByFunc">
+            <ng-container *ngIf="!isCurrentUser(user)">
+                <mat-card [@fadeInOut] class="p-0 mt-3 mat-elevation-z3"
+                    fxLayout="column" fxFlex.xs="100" fxFlex.sm="48" ngClass.sm="sm-view" ngClass.md="md-view"
+                    ngClass.lg="lg-view" fxFlex.md="31" fxFlex.lg="31" fxFlex.gt-lg="23">
+
+                    <div class="card-status-header">
+                        <mat-card-title class="m-0 ml-2">{{user.fullName}}</mat-card-title>
+                    </div>
+                    <mat-card-content>
+                        <div fxFlex="1 0 25%" ngClass.xs="mt-1" ngClass.gt-md="p-2" fxLayoutAlign="center start">
+                            <img class="avatar avatar-maxwidth mt-1 mat-elevation-z3" [src]="getImageForUser(user)" alt="User Avatar"
+                                 ngStyle.xs="maxWidth: '70px'" ngStyle.sm="maxWidth: '70px'" ngStyle.gt-sm="maxWidth: '90px'">
+                        </div>
+                        <div fxFlex="auto" fxLayout="column" fxLayoutAlign="space-between start" ngClass.md="p-1"
+                            ngClass.gt-md="p-2">
+
+                            <mat-card-subtitle fxLayoutAlign="start center">
+                                <mat-icon fxLayoutAlign="start center" ngClass.xs="mt-1" ngClass.md="mr-1"
+                                    ngClass.gt-md="mr-2">call</mat-icon>{{user.phoneNumber}}
+                            </mat-card-subtitle>
+                            <mat-card-subtitle class="dont-break-out" ngClass.xs="mt-1" fxLayoutAlign="start center"
+                                fxLayoutAlign="start center">
+                                <mat-icon fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">email</mat-icon><a
+                                    href="mailto:{{user.email}}" target="_blank">{{user.email}}</a>
+                            </mat-card-subtitle>
+
+                            <mat-card-subtitle
+                                class="status-indicator" fxLayoutAlign="start center"
+                                ngClass.xs="mt-1" [ngSwitch]="user.appointmentStatus">
+                                <ng-container *ngSwitchCase="0"><mat-icon color="warn" fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">event_busy</mat-icon>On vacation</ng-container>
+                                <ng-container *ngSwitchCase="1"><mat-icon color="warn" fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">event_busy</mat-icon>Preliminary meeting</ng-container>
+                                <ng-container *ngSwitchCase="2"><mat-icon color="warn" fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">event_busy</mat-icon>Busy in a meeting</ng-container>
+                                <ng-container *ngSwitchCase="3"><mat-icon color="warn" fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">event_busy</mat-icon>Out of office</ng-container>
+                                <ng-container *ngSwitchCase="4"><mat-icon color="warn" fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">event_busy</mat-icon>Working elsewhere</ng-container>
+                                <ng-container *ngSwitchDefault><mat-icon class="online" fxLayoutAlign="start center" ngClass.md="mr-1" ngClass.gt-md="mr-2">event_available</mat-icon>Not in a meeting</ng-container>
+                            </mat-card-subtitle>
+
+                        </div>
+                    </mat-card-content>
+                    <mat-card-actions>
+                        <div class="w-100 mb-3" fxLayout="row" fxLayoutAlign="end start">
+                            <button class="mat-elevation-z3 mr-1" [ngClass]="isDarkTheme  ? 'dark' : 'light'" mat-stroked-button [routerLink]="['/chat', user.id]" routerLinkActive="router-link-active"
+                                color="accent" matTooltip="{{'tooltips.Chat' | translate}}" (click)="newMessageThreadForUser(user)">
+                                <mat-icon>chat_bubble</mat-icon><span class="button-text ml-2">Chat</span>
+                            </button>
+                            <button class="mat-elevation-z3" [ngClass]="isDarkTheme  ? 'dark' : 'light'" mat-stroked-button color="accent" matTooltip="{{'tooltips.Calendar' | translate}}" (click)="showScheduler(user)">
+                                <mat-icon>calendar_today</mat-icon><span class="button-text ml-2">Calendar</span>
+                            </button>
+                        </div>
+                    </mat-card-actions>
+                </mat-card>
+            </ng-container>
+        </ng-container>
+    </div>
+
+</div>

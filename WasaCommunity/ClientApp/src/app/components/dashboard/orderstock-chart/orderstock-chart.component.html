@@ -1,0 +1,35 @@
+<mat-card class="mat-elevation-z3 chart-wrapper" fxLayout="column" fxFill>
+    <dx-chart #chart [barGroupPadding]="0" [ngClass]="isDarkTheme ? 'dark' : 'light'" class="m-3" id="chart"
+        [dataSource]="orderstock" [palette]="isDarkTheme ? 'darkPalette' : 'lightPalette'">
+        <dxi-series valueField="totalSumInSek" name="Orderstock"></dxi-series>
+        <dxi-value-axis position="left">
+            <dxo-label [customizeText]="returnThousand">
+            </dxo-label>
+            <dxo-title text="SEK">
+                <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+            </dxo-title>
+        </dxi-value-axis>
+        <dxo-argument-axis>
+            <dxo-title text="Amount of orders">
+                <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+            </dxo-title>
+        </dxo-argument-axis>
+        <dxo-common-series-settings [barPadding]="0" argumentField="amountOfOrders" type="bar"
+            hoverMode="allArgumentPoints" selectionMode="allArgumentPoints" cornerRadius="4">
+            <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+        </dxo-common-series-settings>
+        <dxo-common-axis-settings [label]="{font: {color: color, family: themeManager._bodyFamily} }"></dxo-common-axis-settings>
+        <dxo-legend markerSize="0" itemTextPosition="right" verticalAlignment="top" horizontalAlignment="right" position="inside" [customizeText]="customizeLegendText">
+            <dxo-border [visible]="true"></dxo-border>
+            <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+        </dxo-legend>
+            <dxo-title text="Orderstock">
+                <dxo-font color="{{color}}" family="{{themeManager._titleFamily}}"></dxo-font>
+                <dxo-subtitle text="(Amount of Orders and Value)">
+                    <dxo-font color="{{color}}" family="{{themeManager._titleFamily}}"></dxo-font>
+                </dxo-subtitle>
+            </dxo-title>
+            <dxo-export [enabled]="false"></dxo-export>
+            <dxo-adaptive-layout [height]="200" [width]="400"></dxo-adaptive-layout>
+    </dx-chart>
+</mat-card>

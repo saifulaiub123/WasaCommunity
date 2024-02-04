@@ -1,0 +1,53 @@
+@import '../../../../scss/shared/variables';
+
+mat-card {
+    height: 235px;
+    @include border-radius(5px);
+
+    .text-wrapper {
+
+            h3 {
+                font-size: 1.2em;
+                font-weight: normal;
+                height: 40px;
+                max-height: 40px;
+                overflow: hidden;
+            }
+
+            p {
+                font-size: .9em;
+                opacity: .7;
+                height: 80px;
+                max-height: 80px;
+                overflow: hidden;
+            }
+    }
+
+    .mat-button {
+        font-size: 1.1em;
+        font-weight: normal;
+    }
+
+}
+
+span.time {
+    // text-align: right;
+    opacity: .8;
+    position: absolute;
+    left: 10px;
+    top: 5px;
+    font-size: .8em;
+}
+
+mat-icon:hover {
+    cursor: pointer;
+}
+
+.wrap {
+    white-space: pre-wrap;      /* CSS3 */
+    white-space: -moz-pre-wrap; /* Firefox */
+    white-space: -pre-wrap;     /* Opera <7 */
+    white-space: -o-pre-wrap;   /* Opera 7 */
+    word-wrap: break-word;      /* IE */
+ }
+

@@ -1,0 +1,9 @@
+<div class="dialog-content" *ngIf="!loadingIndicator">
+    <div class="header mb-2" fxLayout="row" fxLayoutAlign="space-between center">
+        <div class="heading">
+            <h3 [ngStyle.xs]="{ 'font-size.em': 1 }" class="ml-0 mt-2 mb-0">Exception Details</h3>
+        </div>
+        <mat-icon id="close" fxFlexAlign="baseline" class="close-lg" (click)="close()">close</mat-icon>
+    </div>
+
+    {{data.exception}}

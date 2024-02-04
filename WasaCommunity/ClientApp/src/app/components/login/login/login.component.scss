@@ -1,0 +1,40 @@
+@import '../../../../scss/shared/colors';
+@import '../../../app-theme';
+
+h2.internet-explorer {
+    color: $warn;
+}
+
+@media (min-width: 768px) {
+    .login-container {
+        width: 700px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .login-container {
+        width: 730px;
+    }
+}
+
+@media (max-width: 576px) {
+    mat-card {
+        margin-top: 2.5em;
+    }
+}
+
+mat-spinner {
+    display: inline-block;
+    margin-right: 16px;
+}
+
+mat-card-title h2 {
+    font-weight: 400;
+    font-size: 1.2em;
+}
+
+@media screen and (min-width: 961px) {
+    img.logo.ng-star-inserted {
+        visibility: hidden;
+    }
+}

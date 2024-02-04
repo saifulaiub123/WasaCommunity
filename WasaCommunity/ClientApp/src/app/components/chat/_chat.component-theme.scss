@@ -1,0 +1,48 @@
+@mixin chat-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+
+    .container-fluid {
+        background-color: mat-color($primary);
+    }
+
+    // .author-header {
+    //     background-color: rgba($color: black, $alpha: 0.3);
+    // }
+
+    .send mat-icon {
+        color: mat-color($accent);
+        opacity: 1;
+    }
+
+    .msg-sent {
+        background-color: rgba($color: black, $alpha: 0.5);
+    }
+
+    .send {
+        background-color: mat-color($primary);
+    }
+
+    input::-webkit-input-placeholder {
+        color: white !important;
+    }
+
+    input:-moz-placeholder {
+        /* Firefox 18- */
+        color: white !important;
+    }
+
+    input::-moz-placeholder {
+        /* Firefox 19+ */
+        color: white !important;
+    }
+
+    input:-ms-input-placeholder {
+        color: white !important;
+    }
+
+    input {
+        color: white;
+    }
+}

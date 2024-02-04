@@ -1,0 +1,119 @@
+<div class="header mb-2" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="heading">
+        <mat-icon class="add-alert">add_alert</mat-icon>
+        Create Alert
+    </div>
+    <mat-icon id="close" fxFlexAlign="baseline" class="close-lg" (click)="close()">close</mat-icon>
+</div>
+
+<div mat-dialog-content>
+    <form #form="ngForm" [formGroup]="alertForm" novalidate fxLayout="column" fxLayoutGap="1em" autocomplete="off">
+
+        <mat-vertical-stepper #linearVerticalStepper="matVerticalStepper" formArrayName="formArray" [linear]="true">
+            <ng-template matStepperIcon="edit">
+                <mat-icon>done</mat-icon>
+            </ng-template>
+
+            <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+                <ng-template matStepLabel>Choose recipients</ng-template>
+                <br>
+                <mat-expansion-panel class="mat-elevation-z3">
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Select group
+                        </mat-panel-title>
+                        <mat-panel-description [fxHide.xs]="true">
+                            Click to choose a predefined group...
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-selection-list formControlName="groups" (selectionChange)="selectRecipientsFromGroup($event)">
+                        <mat-list-option *ngFor="let group of groups; let i=index" [value]="group">
+                            <h3>{{groups[i].name}}</h3>
+                        </mat-list-option>
+                    </mat-selection-list>
+                </mat-expansion-panel>
+                <br>
+                <mat-expansion-panel class="mat-elevation-z3">
+                    <mat-expansion-panel-header color="primary">
+                        <mat-panel-title>
+                            <div [ngSwitch]="amountOfRecipientsSelected">
+                                <div *ngSwitchCase="0">Select Recipients</div>
+                                <div *ngSwitchDefault>{{amountOfRecipientsSelected}} Recipients</div>
+                            </div>
+                        </mat-panel-title>
+                        <mat-panel-description [fxHide.xs]="true">
+                            Click to choose final recipients...
+                        </mat-panel-description>
+                    </mat-expansion-panel-header>
+                    <mat-selection-list #recipientsList formControlName="users" (selectionChange)="recipientClicked($event)">
+                        <mat-list-option *ngFor="let user of users; let i=index" [value]="user">
+                            <div fxFlex="auto">
+                                <img class="avatar avatar-xs" [src]="getAvatarForUser(users[i])" alt="User Avatar" [ngStyle.xs]="{ 'width.px': 30}">
+                                <h3 [fxHide.xs]="true">{{data.users[i].fullName}}</h3>
+                                <h3 snEllipsis class="fullname-mobile" [fxHide.gt-xs]="true">{{data.users[i].fullName | split: ' '}}</h3>
+                            </div>
+                        </mat-list-option>
+                    </mat-selection-list>
+                </mat-expansion-panel>
+                <br>
+                <mat-error *ngIf="recipients.touched && recipients.hasError('required')">
+                    Choose at least one recipient
+                </mat-error>
+                <br>
+                <div>
+                    <button class="mat-elevation-z3" type="button" mat-stroked-button matStepperNext>Next <mat-icon id="alert-btn-icon">arrow_forward_ios</mat-icon></button>
+                </div>
+            </mat-step>
+
+            <mat-step formGroupName="1" [stepControl]="title">
+                <ng-template matStepLabel>
+                    <div>Write Message</div>
+                </ng-template>
+                <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <perfect-scrollbar>
+                        <div class="scroll-wrapper">
+                            <textarea class="scroll" matInput formControlName="title" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="2" cdkAutosizeMaxRows="5"></textarea>
+                        </div>
+                    </perfect-scrollbar>
+                </mat-form-field>
+                <mat-error *ngIf="title.touched && title.hasError('required')">
+                    Title is required
+                </mat-error>
+                <mat-error *ngIf="!title.hasError('required') && title.hasError('maxlength')">
+                    Title should be maximum 60 characters
+                </mat-error>
+                <br><br>
+                <mat-form-field>
+                    <mat-label>Body</mat-label>
+                    <perfect-scrollbar>
+                        <div class="scroll-wrapper">
+                            <textarea class="scroll" matInput formControlName="body" cdkTextareaAutosize #autosize="cdkTextareaAutosize"
+                                cdkAutosizeMinRows="2" cdkAutosizeMaxRows="10"></textarea>
+                        </div>
+                    </perfect-scrollbar>
+                </mat-form-field>
+                <div>
+                    <button class="mat-elevation-z3 mr-2" type="button" mat-stroked-button matStepperPrevious><mat-icon id="alert-btn-icon">arrow_back_ios</mat-icon> Back</button>
+                    <button class="mat-elevation-z3" mat-stroked-button matStepperNext>Next <mat-icon id="alert-btn-icon">arrow_forward_ios</mat-icon></button>
+                </div>
+            </mat-step>
+
+            <mat-step>
+                <ng-template matStepLabel>
+                    <div [ngSwitch]="amountOfRecipientsSelected">
+                        <div *ngSwitchCase="0">Send alert</div>
+                        <div *ngSwitchCase="1">Send alert to {{amountOfRecipientsSelected}} recipient</div>
+                        <div *ngSwitchDefault>Send alert to {{amountOfRecipientsSelected}} recipients</div>
+                    </div>
+                </ng-template>
+                <br>
+                <div>
+                    <button class="mat-elevation-z3 mr-2" type="button" mat-stroked-button matStepperPrevious><mat-icon id="alert-btn-icon">arrow_back_ios</mat-icon> Back</button>
+                    <button class="mat-elevation-z3" mat-stroked-button (click)="send()" color="accent">Send <mat-icon id="alert-btn-icon">check</mat-icon></button>
+                </div>
+            </mat-step>
+        </mat-vertical-stepper>
+
+    </form>

@@ -1,0 +1,11 @@
+@import '../../app-theme';
+
+$primary:   mat-palette($mat-grey, 700);
+$accent:    mat-palette($mat-cyan, 500);
+$warn:      mat-palette($mat-red, 500);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+
+@include angular-material-theme($theme);
+@include wasacommunity-app-theme($theme);

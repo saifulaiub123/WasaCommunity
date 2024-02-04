@@ -1,0 +1,18 @@
+<h1 *ngIf="canManageGroups" mat-dialog-title>{{groupName ? ('groups.management.EditGroup' | translate:groupName) : ('groups.management.NewGroup' | translate)}}</h1>
+<h1 *ngIf="!canManageGroups" mat-dialog-title>{{'groups.management.GroupDetails' | translate:groupName}}</h1>
+<br>
+<div mat-dialog-content>
+    <group-editor #groupEditor [group]="data.group" [users]="data.users"></group-editor>
+</div>
+<div mat-dialog-actions>
+    <button class="mat-elevation-z3 save" *ngIf="canManageGroups" mat-stroked-button (click)="groupEditor.save();"
+            [ngClass]="isDarkTheme  ? 'dark' : 'light'">
+        <mat-icon>save</mat-icon><span class="ml-2">Save</span>
+    </button>
+    <button class="mat-elevation-z3 ml-3" *ngIf="canManageGroups" mat-stroked-button (click)="cancel()" color="warn">
+        <mat-icon>cancel</mat-icon><span class="ml-2">Cancel</span>
+    </button>
+    <button class="mat-elevation-z3 ml-3" *ngIf="!canManageGroups" mat-stroked-button (click)="cancel()">
+        <mat-icon>cancel</mat-icon><span class="ml-2">Cancel</span>
+    </button>
+</div>

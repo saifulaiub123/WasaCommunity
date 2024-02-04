@@ -1,0 +1,18 @@
+<div (click)="clicked($event)"
+[ngClass]="{'dark':isDarkTheme, 'light': !isDarkTheme, 'selected':selected}"
+class="conversation-preview" fxLayout="row">
+    <div class="left" fxFlex="25" fxLayoutAlign="start center">
+        <img class="avatar avatar-md mat-elevation-z3" [src]="getImageForThread(thread)">
+    </div>
+    <div class="middle" fxLayout="column" fxLayoutAlign="center start" fxFlex="50">
+        <h3 fxLayout="row" fxLayoutAlign="center center">
+            {{thread.name}}
+        </h3>
+        <h5 class="text-preview">{{thread.lastMessage.text}}</h5>
+    </div>
+
+    <div class="right" fxLayout="column" fxLayoutAlign="start end" fxFlex="25">
+        <h6>{{thread.lastMessage.sentAt | date:'LLL dd'}}</h6>
+        <mat-icon [ngClass]="isDarkTheme  ? 'dark' : 'light'" *ngIf="unreadMessagesCount > 0">fiber_manual_record</mat-icon>
+    </div>
+</div>

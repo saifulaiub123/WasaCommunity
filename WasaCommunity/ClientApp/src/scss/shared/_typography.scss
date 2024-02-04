@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:400,700|Open+Sans:400,700&display=swap');
+
+
+//Headers
+
+@mixin g-h1 {
+    font-size: 2.827em;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 1em 0 0.25em;
+}
+
+@mixin g-h2 {
+    font-size: 1.999em;
+    font-weight: normal;
+    line-height: 1.2;
+    margin: 1em 0 0.5em;
+}
+
+@mixin g-h3 {
+    font-size: 1.414em;
+    font-weight: normal;
+    line-height: 1.4;
+    margin: 1em 0 0.7em;
+}
+
+
+//Paragraphs
+
+@mixin g-paragraph {
+    line-height: 1.75;
+    margin-top: 0;
+}

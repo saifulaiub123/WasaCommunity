@@ -1,0 +1,40 @@
+<mat-card class="mat-elevation-z3 chart-wrapper" fxLayout="column">
+    <dx-chart #chart [ngClass]="isDarkTheme ? 'dark' : 'light'" class="m-3" id="chart"
+        [dataSource]="chartData" [palette]="isDarkTheme ? 'darkPalette' : 'lightPalette'"
+        >
+        <dxi-series valueField="hongkongAmount" name="Hong Kong"></dxi-series>
+        <dxi-series valueField="fjugestaAmount" name="Fjugesta"></dxi-series>
+        <dxi-value-axis [maxValueMargin]="0.20" position="left">
+            <dxo-title text="SEK">
+                <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+            </dxo-title>
+        </dxi-value-axis>
+        <dxo-common-series-settings argumentField="date" type="bar" hoverMode="allArgumentPoints"
+            selectionMode="allArgumentPoints" cornerRadius="4">
+            <dxo-label [customizeText]="customizeText" [visible]="!mobileQuery.matches" [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }">
+            <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+            </dxo-label>
+        </dxo-common-series-settings>
+        <dxo-common-axis-settings [label]="{font: {color: color, family: themeManager._bodyFamily} }"></dxo-common-axis-settings>
+        <dxo-legend verticalAlignment="top" horizontalAlignment="center">
+            <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+        </dxo-legend>
+        <dxo-title text="Invoiced Amount">
+            <dxo-font color="{{color}}" family="{{themeManager._titleFamily}}"></dxo-font>
+            <dxo-subtitle text="(For Timeperiod, By Location)">
+                <dxo-font color="{{color}}" family="{{themeManager._titleFamily}}"></dxo-font>
+            </dxo-subtitle>
+        </dxo-title>
+        <dxo-export [enabled]="false"></dxo-export>
+        <dxo-adaptive-layout [height]="200" [width]="400"></dxo-adaptive-layout>
+    </dx-chart>
+
+    <div fxLayoutAlign="center none">
+        <dx-date-box type="date" pickerType="calendar" displayFormat="yyyy-MM-dd "
+            (onValueChanged)="dateBox_valueChanged($event)" placeholder="Select Date" stylingMode="underlined">
+        </dx-date-box>
+    </div>
+</mat-card>

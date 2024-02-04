@@ -1,0 +1,37 @@
+<mat-card class="mat-elevation-z3 chart-wrapper" fxLayout="column" fxFill>
+    <dx-chart #chart [ngClass]="isDarkTheme ? 'dark' : 'light'" class="m-3" id="chart"
+        [dataSource]="performanceLogs" [palette]="isDarkTheme ? 'darkPalette' : 'lightPalette'"
+        [customizeLabel]="customizeLabel"
+        (onPointClick)="openPerformanceDetailsDialog($event)" resolveLabelOverlapping="stack">
+        <dxo-title text="{{title}}">
+            <dxo-font color="{{color}}" family="{{themeManager._titleFamily}}"></dxo-font>
+            <dxo-subtitle text="({{subtitle}})">
+                <dxo-font color="{{color}}" family="{{themeManager._titleFamily}}"></dxo-font>
+            </dxo-subtitle>
+        </dxo-title>
+        <dxi-value-axis [maxValueMargin]="0.20" position="left">
+            <dxo-title text="Milliseconds">
+                <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+            </dxo-title>
+        </dxi-value-axis>
+        <dxo-common-series-settings argumentField="message" type="bar" valueField="averageMilliseconds"
+            [ignoreEmptyPoints]="true" cornerRadius="4">
+            <dxo-label [customizeText]="customizeText" [visible]="true" [format]="{
+                type: 'fixedPoint',
+                precision: '0'
+            }">
+            <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+            </dxo-label>
+        </dxo-common-series-settings>
+        <dxo-common-axis-settings [label]="{font: {color: color, family: themeManager._bodyFamily} }"></dxo-common-axis-settings>
+        <dxo-legend [visible]="false" verticalAlignment="top" horizontalAlignment="center" position="outside">
+            <dxo-font color="{{color}}" family="{{themeManager._bodyFamily}}"></dxo-font>
+        </dxo-legend>
+        <dxo-series-template nameField="message"></dxo-series-template>
+        <dxo-argument-axis [visualRange]="visualRange" [label]="{visible: false }"></dxo-argument-axis>
+        <dxo-adaptive-layout [height]="200" [width]="400"></dxo-adaptive-layout>
+        <dxo-tooltip [enabled]="true" [customizeTooltip]="customizeTooltip"></dxo-tooltip>
+        <dxo-zoom-and-pan argumentAxis="pan"></dxo-zoom-and-pan>
+        <dxo-scroll-bar [visible]="true" [width]="5" position="bottom" color="{{color}}"></dxo-scroll-bar>
+    </dx-chart>
+</mat-card>

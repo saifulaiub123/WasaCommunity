@@ -1,0 +1,14 @@
+<h1>{{userName ? ('users.management.EditUser' | translate:userName) : ('users.management.NewUser' | translate)}}</h1>
+<br>
+<div mat-dialog-content>
+    <user-editor [user]="data.user" [roles]="data.roles" isEditMode="true"></user-editor>
+</div>
+<div mat-dialog-actions>
+    <button class="mat-elevation-z3 save" mat-stroked-button (click)="editUser.save()"
+            [ngClass]="isDarkTheme  ? 'dark' : 'light'">
+        <mat-icon>save</mat-icon><span class="ml-2">Save</span>
+    </button>
+    <button class="mat-elevation-z3 ml-3" mat-stroked-button (click)="cancel()" color="warn">
+        <mat-icon>save</mat-icon><span class="ml-2">Cancel</span>
+    </button>
+</div>

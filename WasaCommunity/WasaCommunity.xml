@@ -1,0 +1,1220 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>WasaCommunity</name>
+    </assembly>
+    <members>
+        <member name="F:WasaCommunity.Authorization.Policies.ViewAllUsersPolicy">
+            <summary>Policy to allow viewing all user records.</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ManageAllUsersPolicy">
+            <summary>Policy to allow adding, removing and updating all user records.</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ViewAllRolesPolicy">
+            <summary>Policy to allow viewing details of all roles.</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ViewRoleByRoleNamePolicy">
+            <summary>Policy to allow viewing details of all or specific roles (Requires roleName as parameter).</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ManageAllRolesPolicy">
+            <summary>Policy to allow adding, removing and updating all roles.</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.AssignAllowedRolesPolicy">
+            <summary>Policy to allow assigning roles the user has access to (Requires new and current roles as parameter).</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ViewAllGroupsPolicy">
+            <summary>Policy to allow viewing details of all groups.</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ManageAllGroupsPolicy">
+            <summary>Policy to allow adding, removing and updating all groups.</summary>
+        </member>
+        <member name="F:WasaCommunity.Authorization.Policies.ViewApplicationInsightsPolicy">
+            <summary>Policy to allow viewing detailed information about the application.</summary>
+        </member>
+        <member name="T:WasaCommunity.Authorization.AccountManagementOperations">
+            <summary>
+            Operation Policy to allow adding, viewing, updating and deleting general or specific user records.
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Controllers.AlertMessagesController">
+            <summary>
+            The endpoint used for actions regarding alertmessages and their resources
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.AlertMessagesController.MarkAllAlertsForUserAsRead(System.String)">
+            <summary>
+            Marks all alertmessages as read for the user specified with the id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>A list of the updated resources</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.AlertMessagesController.MarkAlertMessageAsDeleted(WasaCommunity.Resources.AlertRecipientResource)">
+            <summary>
+            Marks the specified alertmessage as deleted for the user specified with the id
+            </summary>
+            <param name="alertRecipientResource">The resource used for marking an alertmessage as deleted</param>
+            <returns>The resource containing the alertmessage that has been marked as deleted</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.AlertMessagesController.MarkAlertMessageAsRead(WasaCommunity.Resources.AlertRecipientResource)">
+            <summary>
+            Marks the specified alertmessage as read for the user specified with the id
+            </summary>
+            <param name="alertRecipientResource">The resource used for marking an alertmessage as read</param>
+            <returns>The updated resource</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.AlertMessagesController.GetAlertMessagesForUser(System.String)">
+            <summary>
+            Gets all the alertmessages for the user specified with the id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>A list of all the alertmessages for the user</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.ChatMessagesController">
+            <summary>
+            The endpoint used for actions regarding chatmessages and their resources
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.ChatMessagesController.GetChatMessagesForUser(System.String)">
+            <summary>
+            Gets the chatmessages for the user with the specified id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>All chatmessages for the specified user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.ChatMessagesController.MarkChatMessagesForThreadAsRead(System.String)">
+            <summary>
+            Marks the chat-messages as read for the current thread
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>All chatmessages that have been marked as read</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.ChatThreadsController">
+            <summary>
+            The endpoint used for actions regarding chat threads and their resources
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.ChatThreadsController.MarkChatMessagesAsReadForThread(System.String,System.Int32)">
+            <summary>
+            Marks the chat-messages as read for the thread with the specified id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <param name="chatThreadId">The id of the chat-thread</param>
+            <returns>All chatmessages that have been marked as read</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.DashboardController">
+            <summary>
+            The endpoint used for resources used within the dashboard
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.DashboardController.GetInvoices">
+            <summary>
+            Gets all the invoices
+            </summary>
+            <returns>A list of invoices</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.DashboardController.GetCurrentOrderstock">
+            <summary>
+            Gets a list of OrderstockResources containing the current orderstock data
+            </summary>
+            <returns>A list of OrderstockResources</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.DashboardController.GetOrdersByPerson">
+            <summary>
+            Gets a list of OrdersByPersonResource
+            </summary>
+            <returns>A list of OrdersByPersonResource</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.GroupsController">
+            <summary>
+            The endpoint used for groups
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.GroupsController.GetGroups(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Gets a specific amount of groups for a specific amount of pages
+            </summary>
+            <param name="page">Defines which page of groups should be returned</param>
+            <param name="pageSize">Defines how many groups should be returned</param>
+            <returns>A list of groups for a specified page with a specified page size</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.GroupsController.UpdateGroup(System.String,WasaCommunity.Resources.GroupResource)">
+            <summary>
+            Updates the group specified with the id
+            </summary>
+            <param name="groupId">The id of the group</param>
+            <param name="groupResource">The resource used for updating the group</param>
+            <returns>The updated group</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.GroupsController.CreateGroup(WasaCommunity.Resources.GroupResource)">
+            <summary>
+            Creates a new group
+            </summary>
+            <param name="groupResource">The resource used for creating the group</param>
+            <returns>The created group</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.GroupsController.DeleteGroup(System.String)">
+            <summary>
+            Deletes the group specified with the id
+            </summary>
+            <param name="groupId">The id of the group</param>
+            <returns>The deleted group</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.GroupsController.GetMembers(System.String)">
+            <summary>
+            Gets all the members of the group specified with the id
+            </summary>
+            <param name="groupId">The id of the group</param>
+            <returns>A list of members</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.LoggingController">
+            <summary>
+            The endpoint used for logging
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.WriteDiagnostic(DAL.Models.DiagnosticLog)">
+            <summary>
+            Writes a diagnostic log
+            </summary>
+            <param name="diagnosticLog">The resource containing the log details</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.WriteError(DAL.Models.FrontendErrorLog)">
+            <summary>
+            Writes an error log
+            </summary>
+            <param name="errorLog">The resource containing the log details</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.WritePerformance(DAL.Models.PerformanceLog)">
+            <summary>
+            Writes a performance log
+            </summary>
+            <param name="performanceLog">The resource containing the log details</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.WriteUsage(DAL.Models.UsageLog)">
+            <summary>
+            Writes a usage log
+            </summary>
+            <param name="usageLog">The resource containing the log details</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.GetMostActiveUsers(System.Int32,System.Int32)">
+            <summary>
+            Gets the most active users
+            </summary>
+            <param name="page">Defines which page should be returned</param>
+            <param name="pageSize">Defines how many active users should be returned</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.GetAveragePerformance(System.Int32,System.Int32)">
+            <summary>
+            Gets performance logs with average elapsed milliseconds by api location
+            </summary>
+            <param name="page">Defines which page should be returned</param>
+            <param name="pageSize">Defines how many entries should be returned</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.GetFrontendErrorsByLocation(System.Int32,System.Int32)">
+            <summary>
+            Gets frontend error logs by api location
+            </summary>
+            <param name="page">Defines which page should be returned</param>
+            <param name="pageSize">Defines how many entries should be returned</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.GetBackendErrorsByLocation(System.Int32,System.Int32)">
+            <summary>
+            Gets backend error logs by api location
+            </summary>
+            <param name="page">Defines which page should be returned</param>
+            <param name="pageSize">Defines how many entries should be returned</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.LoggingController.GetMostUsedFeatures(System.Int32,System.Int32)">
+            <summary>
+            Gets most used features based on amount of log-entries
+            </summary>
+            <param name="page">Defines which page should be returned</param>
+            <param name="pageSize">Defines how many entries should be returned</param>
+        </member>
+        <member name="T:WasaCommunity.Controllers.PermissionsController">
+            <summary>
+            Endpoint used for retrieving application permissions
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.PermissionsController.GetAllPermissions">
+            <summary>
+            Gets all the application permissions
+            </summary>
+            <returns>A list of the permissions in the application</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.PushNotificationsController">
+            <summary>
+            The endpoint used for actions regarding notifications
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Controllers.RolesController">
+            <summary>
+            The endpoint used for application roles
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.GetRoleById(System.String)">
+            <summary>
+            Gets the role with the specified id
+            </summary>
+            <param name="roleId">The id of the role</param>
+            <returns>The role with the specified id</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.GetRoleByName(System.String)">
+            <summary>
+            Gets the role with the specified name
+            </summary>
+            <param name="name">The name of the role</param>
+            <returns>The role with the specified name</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.GetRoles">
+            <summary>
+            Gets all roles
+            </summary>
+            <returns>All the roles</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.GetRoles(System.Int32,System.Int32)">
+            <summary>
+            Gets a specific amount of roles for a specific amount of pages
+            </summary>
+            <param name="page">Defines which page of roles should be returned</param>
+            <param name="pageSize">Defines how many roles should be returned</param>
+            <returns>A list of roles for a specified page with a specified page size</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.UpdateRole(System.String,WasaCommunity.Resources.RoleResource)">
+            <summary>
+            Updates the role with the specified id
+            </summary>
+            <param name="roleId">The id of the role</param>
+            <param name="role">The resource used for updating the role</param>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.CreateRole(WasaCommunity.Resources.RoleResource)">
+            <summary>
+            Creates a new role
+            </summary>
+            <param name="role">The resource used for creating a new role</param>
+            <returns>The created role</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.RolesController.DeleteRole(System.String)">
+            <summary>
+            Deletes the role with the specified id
+            </summary>
+            <param name="roleId">The id of the role</param>
+            <returns>The deleted role</returns>
+        </member>
+        <member name="T:WasaCommunity.Controllers.UsersController">
+            <summary>
+            The endpoint used for actions regarding users and their resources
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.GetCurrentUser">
+            <summary>
+            Gets the current user
+            </summary>
+            <returns>The current user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.GetUserById(System.String)">
+            <summary>
+            Gets a user by id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>The user with the specified id</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.GetUserByUserName(System.String)">
+            <summary>
+            Gets a user by username
+            </summary>
+            <param name="userName">The username (typically email-address)</param>
+            <returns>The user with the specified username</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.GetUsers">
+            <summary>
+            Gets all the users
+            </summary>
+            <returns>A list of users</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.GetUsers(System.Int32,System.Int32)">
+            <summary>
+            Gets a specific amount of users for a specific amount of pages
+            </summary>
+            <param name="page">Defines which page of users should be returned</param>
+            <param name="pageSize">Defines how many users should be returned</param>
+            <returns>A list of users for a specified page with a specified page size</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UpdateCurrentUser(WasaCommunity.Resources.UserEditResource)">
+            <summary>
+            Updates the current user
+            </summary>
+            <param name="user">UserEditResource</param>
+            <returns>The updated user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UpdateUser(System.String,WasaCommunity.Resources.UserEditResource)">
+            <summary>
+            Updates the user specified with the id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <param name="user">The resource used for updating the user</param>
+            <returns>The updated user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UpdateCurrentUser(Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{WasaCommunity.Resources.UserPatchResource})">
+            <summary>
+            Partially updates the current user
+            </summary>
+            <param name="patch">JsonPatchDocument of UserPatchResource</param>
+            <returns>The partially updated user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UpdateUser(System.String,Microsoft.AspNetCore.JsonPatch.JsonPatchDocument{WasaCommunity.Resources.UserPatchResource})">
+            <summary>
+            Partially updates the user with the specified id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <param name="patch">JsonPatchDocument of UserPatchResource</param>
+            <returns>The partially updated user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.Register(WasaCommunity.Resources.UserEditResource)">
+            <summary>
+            Registers a new user
+            </summary>
+            <param name="user">UserEditResource</param>
+            <returns>The registered user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.DeleteUser(System.String)">
+            <summary>
+            Delete the user with the specified id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>The deleted user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UnblockUser(System.String)">
+            <summary>
+            Unblocks the user with the specified id
+            </summary>
+            <param name="userId">The id of the user</param>
+            <returns>The unblocked user</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UserPreferences">
+            <summary>
+            Gets the preferences for the current user
+            </summary>
+            <returns>The user configuration</returns>
+        </member>
+        <member name="M:WasaCommunity.Controllers.UsersController.UserPreferences(System.String)">
+            <summary>
+            Updates the preferences for the current user
+            </summary>
+            <param name="data">The preferences to be updated</param>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXJavascript">
+            <summary>Used to denote the encoding necessary for files containing JavaScript source code. The alternative MIME type for this file type is text/javascript.</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioL24">
+            <summary>24bit Linear PCM audio at 8-48kHz, 1-N channels; Defined in RFC 3190</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXShockwaveFlash">
+            <summary>Adobe Flash files for example with the extension .swf</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationOctetStream">
+            <summary>Arbitrary binary data.[5] Generally speaking this type identifies files that are not associated with a specific application. Contrary to past assumptions by software packages such as Apache this is not a type that should be applied to unknown files. In such a case, a server or application should not indicate a content type, as it may be incorrect, but rather, should omit the type in order to allow the recipient to guess the type.[6]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationAtomXml">
+            <summary>Atom feeds</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextCss">
+            <summary>Cascading Style Sheets; Defined in RFC 2318</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextCmd">
+            <summary>commands; subtype resident in Gecko browsers like Firefox 3.5</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextCsv">
+            <summary>Comma-separated values; Defined in RFC 4180</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXDeb">
+            <summary>deb (file format), a software package format used by the Debian project</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MultipartEncrypted">
+            <summary>Defined in RFC 1847</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MultipartSigned">
+            <summary>Defined in RFC 1847</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MessageHttp">
+            <summary>Defined in RFC 2616</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelExample">
+            <summary>Defined in RFC 4735</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXDvi">
+            <summary>device-independent document in DVI format</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXmlDtd">
+            <summary>DTD files; Defined by RFC 3023</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationJavascript">
+            <summary>ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/ecmascript but with looser processing rules) It is not accepted in IE 8 or earlier - text/javascript is accepted but it is defined as obsolete in RFC 4329. The "type" attribute of the script tag in HTML5 is optional and in practice omitting the media type of JavaScript programs is the most interoperable solution since all browsers have always assumed the correct default even before HTML5.</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationEcmascript">
+            <summary>ECMAScript/JavaScript; Defined in RFC 4329 (equivalent to application/javascript but with stricter processing rules)</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationEdifact">
+            <summary>EDI EDIFACT data; Defined in RFC 1767</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationEdiX12">
+            <summary>EDI X12 data; Defined in RFC 1767</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MessagePartial">
+            <summary>Email; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MessageRfc822">
+            <summary>Email; EML files, MIME files, MHT files, MHTML files; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextXml">
+            <summary>Extensible Markup Language; Defined in RFC 3023</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXml">
+            <summary>Extensible Markup Language; Defined in RFC 3023</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoXFlv">
+            <summary>Flash video (FLV files)</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImageGif">
+            <summary>GIF image; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextXGwtRpc">
+            <summary>GoogleWebToolkit data</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXGzip">
+            <summary>Gzip</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextHtml">
+            <summary>HTML; Defined in RFC 2854</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImageVndMicrosoftIcon">
+            <summary>ICO image; Registered[9]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelIges">
+            <summary>IGS files, IGES files; Defined in RFC 2077</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MessageImdnXml">
+            <summary>IMDN Instant Message Disposition Notification; Defined in RFC 5438</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationJson">
+            <summary>JavaScript Object Notation JSON; Defined in RFC 4627</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationJsonPatch">
+            <summary>JavaScript Object Notation (JSON) Patch; Defined in RFC 6902</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextJavascript">
+            <summary>JavaScript - Defined in and obsoleted by RFC 4329 in order to discourage its usage in favor of application/javascript. However,text/javascript is allowed in HTML 4 and 5 and, unlike application/javascript, has cross-browser support. The "type" attribute of the script tag in HTML5 is optional and there is no need to use it at all since all browsers have always assumed the correct default (even in HTML 4 where it was required by the specification).</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImagePjpeg">
+            <summary>JPEG JFIF image; Associated with Internet Explorer; Listed in ms775147(v=vs.85) - Progressive JPEG, initiated before global browser support for progressive JPEGs (Microsoft and Firefox).</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImageJpeg">
+            <summary>JPEG JFIF image; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextXJqueryTmpl">
+            <summary>jQuery template data</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndGoogleEarthKmlXml">
+            <summary>KML files (e.g. for Google Earth)</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXLatex">
+            <summary>LaTeX files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoXMatroska">
+            <summary>Matroska open media format</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOpenxmlformatsOfficedocumentSpreadsheetmlSheet">
+            <summary>Microsoft Excel 2007 files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndMsExcel">
+            <summary>Microsoft Excel files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOpenxmlformatsOfficedocumentPresentationmlPresentation">
+            <summary>Microsoft Powerpoint 2007 files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndMsPowerpoint">
+            <summary>Microsoft Powerpoint files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOpenxmlformatsOfficedocumentWordprocessingmlDocument">
+            <summary>Microsoft Word 2007 files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationMsword">
+            <summary>Microsoft Word files[15]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MultipartAlternative">
+            <summary>MIME Email; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MultipartMixed">
+            <summary>MIME Email; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MultipartRelated">
+            <summary>MIME Email; Defined in RFC 2387 and used by MHTML (HTML mail)</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.MultipartFormData">
+            <summary>MIME Webform; Defined in RFC 2388</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndMozillaXulXml">
+            <summary>Mozilla XUL files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioMpeg">
+            <summary>MP3 or other MPEG audio; Defined in RFC 3003</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioMp4">
+            <summary>MP4 audio</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoMp4">
+            <summary>MP4 video; Defined in RFC 4337</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoMpeg">
+            <summary>MPEG-1 video with multiplexed audio; Defined in RFC 2045 and RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelMesh">
+            <summary>MSH files, MESH files; Defined in RFC 2077, SILO files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioBasic">
+            <summary>mulaw audio at 8 kHz, 1 channel; Defined in RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoOgg">
+            <summary>Ogg Theora or other video (with audio); Defined in RFC 5334</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioOgg">
+            <summary>Ogg Vorbis, Speex, Flac and other audio; Defined in RFC 5334</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationOgg">
+            <summary>Ogg, a multimedia bitstream container format; Defined in RFC 5334</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXopXml">
+            <summary>OP</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOasisOpendocumentGraphics">
+            <summary>OpenDocument Graphics; Registered[14]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOasisOpendocumentPresentation">
+            <summary>OpenDocument Presentation; Registered[13]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOasisOpendocumentSpreadsheet">
+            <summary>OpenDocument Spreadsheet; Registered[12]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationVndOasisOpendocumentText">
+            <summary>OpenDocument Text; Registered[11]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXPkcs12">
+            <summary>p12 files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXPkcs7Certificates">
+            <summary>p7b and spc files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXPkcs7Mime">
+            <summary>p7c files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXPkcs7Certreqresp">
+            <summary>p7r files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXPkcs7Signature">
+            <summary>p7s files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationPdf">
+            <summary>Portable Document Format, PDF has been in use for document exchange on the Internet since 1993; Defined in RFC 3778</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImagePng">
+            <summary>Portable Network Graphics; Registered,[8] Defined in RFC 2083</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationPostscript">
+            <summary>PostScript; Defined in RFC 2046</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoQuicktime">
+            <summary>QuickTime video; Registered[10]</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXRarCompressed">
+            <summary>RAR archive files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioVndRnRealaudio">
+            <summary>RealAudio; Documented in RealPlayer Customer Support Answer 2559</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationRdfXml">
+            <summary>Resource Description Framework; Defined by RFC 3870</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationRssXml">
+            <summary>RSS feeds</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationSoapXml">
+            <summary>SOAP; Defined by RFC 3902</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXStuffit">
+            <summary>StuffIt archive files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImageSvgXml">
+            <summary>SVG vector image; Defined in SVG Tiny 1.2 Specification Appendix M</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ImageTiff">
+            <summary>Tag Image File Format (only for Baseline TIFF); Defined in RFC 3302</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXTar">
+            <summary>Tarball files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextPlain">
+            <summary>Textual data; Defined in RFC 2046 and RFC 3676</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXFontTtf">
+            <summary>TrueType Font No registered MIME type, but this is the most commonly used</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.TextVcard">
+            <summary>vCard (contact information); Defined in RFC 6350</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioVorbis">
+            <summary>Vorbis encoded audio; Defined in RFC 5215</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioVndWave">
+            <summary>WAV audio; Defined in RFC 2361</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationFontWoff">
+            <summary>Web Open Font Format; (candidate recommendation; use application/x-font-woff until standard is official)</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoWebm">
+            <summary>WebM Matroska-based open media format</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioWebm">
+            <summary>WebM open media format</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioXMsWax">
+            <summary>Windows Media Audio Redirector; Documented in Microsoft help page</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.AudioXMsWma">
+            <summary>Windows Media Audio; Documented in Microsoft KB 288102</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.VideoXMsWmv">
+            <summary>Windows Media Video; Documented in Microsoft KB 288102</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelVrml">
+            <summary>WRL files, VRML files; Defined in RFC 2077</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelX3DXml">
+            <summary>X3D ISO standard for representing 3D computer graphics, X3D XML files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelX3DBinary">
+            <summary>X3D ISO standard for representing 3D computer graphics, X3DB binary files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ModelX3DVrml">
+            <summary>X3D ISO standard for representing 3D computer graphics, X3DV VRML files</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationXhtmlXml">
+            <summary>XHTML; Defined by RFC 3236</summary>
+        </member>
+        <member name="F:WasaCommunity.Helpers.MediaTypeNames.ApplicationZip">
+            <summary>ZIP archive files; Registered[7]</summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.AlertMessageResource">
+            <summary>
+            Represents a resource for an alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertMessageResource.Id">
+            <summary>
+            The id of the alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertMessageResource.Author">
+            <summary>
+            Represents basic information about the author of the alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertMessageResource.Title">
+            <summary>
+            The title of the alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertMessageResource.Body">
+            <summary>
+            The body of the alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertMessageResource.SentAt">
+            <summary>
+            The date and time of when the alert-message was sent
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertMessageResource.Recipients">
+            <summary>
+            The list of recipients
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.AlertRecipientResource">
+            <summary>
+            Represents the recipient of an alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertRecipientResource.AlertId">
+            <summary>
+            The id of the alert-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertRecipientResource.RecipientId">
+            <summary>
+            The id of the recipient user 
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertRecipientResource.IsRead">
+            <summary>
+            Indicates if the alert-message has been read
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.AlertRecipientResource.IsDeleted">
+            <summary>
+            Indicates if the alert-message has been deleted
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.AveragePerformanceResource">
+            <summary>
+            Represents a resource for the average performance
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.BackendErrorsByLocationResource">
+            <summary>
+            Represents a resource for a backend error by location
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.CalendarAppointmentResource">
+            <summary>
+            Represents a calendar appointment
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.CalendarAppointmentResource.Text">
+            <summary>
+            The title of the appointment
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.CalendarAppointmentResource.StartDate">
+            <summary>
+            The date and time of when the appointment starts
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.CalendarAppointmentResource.EndDate">
+            <summary>
+            The date and time of when the apointment ends
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.CalendarAppointmentResource.FreeBusy">
+            <summary>
+            The number indicating which availability status is set on the appointment (0: On Vacation, 1: In a preliminary meeting, 2: Busy in a meeting, 3: Out of office, 4: Working elsewhere, 5: Not in a meeting) 
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.CalendarAppointmentResource.UserId">
+            <summary>
+            The id of the user which the appointment belongs to
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.CalendarAppointmentResource.AllDay">
+            <summary>
+            Indicates whether the appointment is an all day event
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.ChatMessageResource">
+            <summary>
+            Represents a chat-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.Id">
+            <summary>
+            The id of the chat-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.SentAt">
+            <summary>
+            The time and date of when the chat-message was sent
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.IsRead">
+            <summary>
+            Indicates if the chat-message has been read
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.Text">
+            <summary>
+            The text of the chat-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.Author">
+            <summary>
+            The author of the chat-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.Receiver">
+            <summary>
+            The receiver of the chat-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatMessageResource.Thread">
+            <summary>
+            The chat-thread that the chat-message belongs to
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.ChatThreadResource">
+            <summary>
+            Represents a chat-thread (a chat-conversation betwen two users)
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatThreadResource.Id">
+            <summary>
+            The id of the chat-thread
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatThreadResource.LastMessage">
+            <summary>
+            The last message sent in the chat-thread
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatThreadResource.Name">
+            <summary>
+            The name of the chat-thread (the full name of the person who started the chat-conversation)
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ChatThreadResource.AvatarSrc">
+            <summary>
+            The image url pointing to the avatar of the person who started the chat-thread
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.ClaimResource">
+            <summary>
+            Represents a claim that is used for permissions throughout the application
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ClaimResource.Type">
+            <summary>
+            The type of claim
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.ClaimResource.Value">
+            <summary>
+            The value of the claim
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.FrontendErrorsByLocationResource">
+            <summary>
+            Represents a resource for a frontend error by location
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.GroupResource">
+            <summary>
+            Represents a resource of a group
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.GroupResource.Id">
+            <summary>
+            The id of the group
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.GroupResource.Name">
+            <summary>
+            The name of the group
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.GroupResource.Members">
+            <summary>
+            The members of the group
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.GroupResource.UsersCount">
+            <summary>
+            The amount of users currently belonging to the group
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.InvoiceResource">
+            <summary>
+            Represents a resource of an invoice
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.IsCredit">
+            <summary>
+            Indicates if the invoice is a credit-invoice
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.InvoiceNumber">
+            <summary>
+            The invoice-number of the invoice
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.CompanyName">
+            <summary>
+            The name of the invoiced company 
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.Warehouse">
+            <summary>
+            Indicates which warehouse-department has created the invoice. Hong Kong / Fjugesta
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.InvoiceDate">
+            <summary>
+            The date of which the invoice was created
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.ExpiryDate">
+            <summary>
+            The date of which the invoice expires
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.InvoiceResource.Amount">
+            <summary>
+            The amount of the invoice
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.LastMessageResource">
+            <summary>
+            Represents a chat-message that is used to indicate which chat-message was last sent in a chat-conversation
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.LastMessageResource.Id">
+            <summary>
+            The id of the chat-message
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.LastMessageResource.SentAt">
+            <summary>
+            The date and time of when the chat-message was sent
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.LastMessageResource.IsRead">
+            <summary>
+            Indicates if the chat-message has been read
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.LastMessageResource.Text">
+            <summary>
+            The text of the chat-message
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.MinimalUserResource">
+            <summary>
+            Represents a resource that only contains basic information about a user
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.MinimalUserResource.Id">
+            <summary>
+            The id of the user
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.MinimalUserResource.FullName">
+            <summary>
+            The full name of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.MinimalUserResource.Email">
+            <summary>
+            The email address to the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.MinimalUserResource.JobTitle">
+            <summary>
+            The job title pf the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.MinimalUserResource.ImageUrl">
+            <summary>
+            The image url pointing to the persons avatar which is used for representation
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.PageHeader">
+            <summary>
+            Represents a wrapper for page-header data
+            </summary>
+        </member>
+        <member name="M:WasaCommunity.Resources.PageHeader.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            The constructor of the page-header
+            </summary>
+            <param name="currentPage">Indicates which page is currently chosen</param>
+            <param name="itemsPerPage">Indicates how many items are to be displayed per page</param>
+            <param name="totalItems">Indicates the total amount of items</param>
+            <param name="totalPages">Indicates the total amount of pages</param>
+        </member>
+        <member name="P:WasaCommunity.Resources.PageHeader.CurrentPage">
+            <summary>
+            The current page
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.PageHeader.ItemsPerPage">
+            <summary>
+            Amount of items per page
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.PageHeader.TotalItems">
+            <summary>
+            The total items of the page
+            </summary>        
+        </member>
+        <member name="P:WasaCommunity.Resources.PageHeader.TotalPages">
+            <summary>
+            The total amount of pages
+            </summary>        
+        </member>
+        <member name="T:WasaCommunity.Resources.PermissionResource">
+            <summary>
+            Represents the resource used for application permissions
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.PermissionResource.Name">
+            <summary>
+            The name of the permission
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.PermissionResource.Value">
+            <summary>
+            The value of the permission
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.PermissionResource.GroupName">
+            <summary>
+            The name of the group that the permission belongs to
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.PermissionResource.Description">
+            <summary>
+            The description of the permission
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.RoleResource">
+            <summary>
+            Represents a role that is used to give users different access
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.RoleResource.Id">
+            <summary>
+            The Id of the role
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.RoleResource.Name">
+            <summary>
+            The name of the role
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.RoleResource.Description">
+            <summary>
+            The description of the role
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.RoleResource.UsersCount">
+            <summary>
+            The number of users currently possessing the role
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.RoleResource.Permissions">
+            <summary>
+            The permissions of the role
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.UserEditResource">
+            <summary>
+            Represents the resource used for editing a user
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserEditResource.CurrentPassword">
+            <summary>
+            The current password of the user
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserEditResource.NewPassword">
+            <summary>
+            The new password of the user
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserEditResource.IsLockedOut">
+            <summary>
+            Indicates if the user is currently locked out or not
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.UserPatchResource">
+            <summary>
+            Represents the resource used for updating a user
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserPatchResource.FullName">
+            <summary>
+            The full name of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserPatchResource.JobTitle">
+            <summary>
+            The job title of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserPatchResource.PhoneNumber">
+            <summary>
+            The phone number of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserPatchResource.Configuration">
+            <summary>
+            The configuration settings for the user
+            </summary>
+        </member>
+        <member name="T:WasaCommunity.Resources.UserResource">
+            <summary>
+            Represents a person that works at Wasa Sweden AB
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.Id">
+            <summary>
+            The id of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.UserName">
+            <summary>
+            The username of the user (typically the email of an employee)
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.FullName">
+            <summary>
+            The full name of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.Email">
+            <summary>
+            The email of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.JobTitle">
+            <summary>
+            The job title of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.PhoneNumber">
+            <summary>
+            The phone number of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.Configuration">
+            <summary>
+            The configuration of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.IsEnabled">
+            <summary>
+            Indicates if the person is enabled or not (if the person is currently working for Wasa Sweden AB, this is set to true)
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.IsLockedOut">
+            <summary>
+            Indicates if the person is locked out or not
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.Roles">
+            <summary>
+            The roles of the person
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.ImageUrl">
+            <summary>
+            The image url pointing to the persons avatar which is used for representation
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.AppointmentStatus">
+            <summary>
+            The appointment status of the person (Contains a number that defines if the person is 0: On Vacation, 1: In a preliminary meeting, 2: Busy in a meeting, 3: Out of office, 4: Working elsewhere, 5: Not in a meeting)
+            </summary>
+        </member>
+        <member name="P:WasaCommunity.Resources.UserResource.Appointments">
+            <summary>
+            The appointments of the person
+            </summary>
+        </member>
+    </members>
+</doc>

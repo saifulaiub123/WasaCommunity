@@ -1,0 +1,103 @@
+<div class="page-content">
+
+    <div class="top mb-4" fxLayout.xs="column" fxLayout.gt-xs="row">
+        <div fxLayout="row" fxLayout.xs="column" fxLayoutAlign="start center" fxLayoutAlign.xs="start start"
+            fxFlex="50">
+            <app-page-header title="Alerts" icon="notification_important" class="mr-4"></app-page-header>
+            <button class="faded" [@fadeInOut] color="accent" [ngStyle.xs]="{ 'margin-bottom.px': 20 }"
+                *ngIf="!loadingIndicator" mat-raised-button (click)="showCreateDialog(groups, users)">
+                <mat-icon>add_alert</mat-icon><span class="button-text ml-2">Create new alert...</span>
+            </button>
+        </div>
+        <div [@fadeInOut] *ngIf="!loadingIndicator" fxLayout="row" fxLayoutAlign.xs="space-between center"
+            fxLayoutAlign.gt-xs="end center" fxFlex="50">
+            <div class="search-wrapper mat-elevation-z3 mr-3" [@fadeInOut] *ngIf="!loadingIndicator" fxLayout="row"
+                fxLayoutAlign="start center">
+                <mat-icon class="icon">search</mat-icon>
+                <input [ngClass]="isDarkTheme ? 'dark' : 'light'" #search [(ngModel)]="searchTerm" matInput
+                    placeholder="{{'alerts.Search' | translate}}">
+            </div>
+            <mat-icon (click)="toggleWithAnimationOptions()" id="more" color="accent">more_vert
+            </mat-icon>
+        </div>
+    </div>
+
+    <dx-popover target="#more" position="bottom" [width]="200" [(visible)]="withAnimationOptionsVisible">
+        <dxo-animation>
+            <dxo-show type="pop" [from]="{ scale: 0 }" [to]="{ scale: 1 }"></dxo-show>
+            <dxo-hide type="fade" [from]="1" [to]="0"></dxo-hide>
+        </dxo-animation>
+        <div *dxTemplate="let data = model of 'content'" fxLayout="column" fxLayoutAlign="space-evenly center">
+            <mat-selection-list #alertSettings>
+                <mat-list-option [selected]="showDeleted" (click)="showDeletedClicked()">
+                    Show deleted
+                </mat-list-option>
+                <mat-list-option [selected]="showRead" (click)="showReadClicked()">
+                    Show read
+                </mat-list-option>
+            </mat-selection-list>
+            <button (click)="markAllAsRead()" mat-button color="accent">Mark all as read</button>
+        </div>
+    </dx-popover>
+
+    <mat-progress-bar color="accent" *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+
+    <ng-container *ngIf="alertsCreatedToday$ | async as alertsCreatedToday">
+        <h2 [@fadeInOut] *ngIf="!loadingIndicator && headingShouldBeRendered(alertsCreatedToday)">Today</h2>
+        <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutGap.xs="7%" fxLayoutGap.gt-xs="2%">
+            <ng-container *ngFor="let alert of alertsCreatedToday | alertsFilter:searchTerm; trackBy: trackByFn1">
+                <alert *ngIf="parametersAreValid(alert.alertRecipient) && !loadingIndicator"
+                    class="mat-elevation-z3 mb-4" fxFlex.xs="100" fxFlex.sm="48" ngClass.sm="sm-view"
+                    ngClass.md="md-view" ngClass.lg="lg-view" fxFlex.md="31" fxFlex.lg="31" fxFlex.gt-lg="23"
+                    [style.opacity]="alert.alertRecipient.isDeleted ? '.6' : '1'"
+                    [alertRecipient]="alert.alertRecipient" [alertMessage]="alert.alertMessage">
+                </alert>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="alertsCreatedAWeekAgo$ | async as alertsCreatedAWeekAgo">
+        <h2 [@fadeInOut] *ngIf="!loadingIndicator && headingShouldBeRendered(alertsCreatedAWeekAgo)">Last Week</h2>
+        <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutGap.xs="7%" fxLayoutGap.gt-xs="2%">
+            <ng-container *ngFor="let alert of alertsCreatedAWeekAgo | alertsFilter:searchTerm; trackBy: trackByFn2">
+                <alert *ngIf="parametersAreValid(alert.alertRecipient) && !loadingIndicator"
+                    class="mat-elevation-z3 mb-4" fxFlex.xs="100" fxFlex.sm="48" ngClass.sm="sm-view"
+                    ngClass.md="md-view" ngClass.lg="lg-view" fxFlex.md="31" fxFlex.lg="31" fxFlex.gt-lg="23"
+                    [style.opacity]="alert.alertRecipient.isDeleted ? '.6' : '1'"
+                    [alertRecipient]="alert.alertRecipient" [alertMessage]="alert.alertMessage">
+                </alert>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="alertsCreatedAMonthAgo$ | async as alertsCreatedAMonthAgo">
+        <h2 [@fadeInOut] *ngIf="!loadingIndicator && headingShouldBeRendered(alertsCreatedAMonthAgo)">Last Month</h2>
+        <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutGap.xs="7%" fxLayoutGap.gt-xs="2%">
+            <ng-container *ngFor="let alert of alertsCreatedAMonthAgo | alertsFilter:searchTerm; trackBy: trackByFn3">
+                <alert *ngIf="parametersAreValid(alert.alertRecipient) && !loadingIndicator"
+                    class="mat-elevation-z3 mb-4" fxFlex.xs="100" fxFlex.sm="48" ngClass.sm="sm-view"
+                    ngClass.md="md-view" ngClass.lg="lg-view" fxFlex.md="31" fxFlex.lg="31" fxFlex.gt-lg="23"
+                    [style.opacity]="alert.alertRecipient.isDeleted ? '.6' : '1'"
+                    [alertRecipient]="alert.alertRecipient" [alertMessage]="alert.alertMessage">
+                </alert>
+            </ng-container>
+        </div>
+    </ng-container>
+
+    <ng-container *ngIf="alertsCreatedMoreThanAMonthAgo$ | async as alertsCreatedMoreThanAMonthAgo">
+        <h2 [@fadeInOut] *ngIf="!loadingIndicator && headingShouldBeRendered(alertsCreatedMoreThanAMonthAgo)">
+            Earlier</h2>
+        <div fxLayout.xs="column" fxLayout.gt-xs="row wrap" fxLayoutGap.xs="7%" fxLayoutGap.gt-xs="2%">
+            <ng-container
+                *ngFor="let alert of alertsCreatedMoreThanAMonthAgo | alertsFilter:searchTerm; trackBy: trackByFn4">
+                <alert *ngIf="parametersAreValid(alert.alertRecipient) && !loadingIndicator"
+                    class="mat-elevation-z3 mb-4" fxFlex.xs="100" fxFlex.sm="48" ngClass.sm="sm-view"
+                    ngClass.md="md-view" ngClass.lg="lg-view" fxFlex.md="31" fxFlex.lg="31" fxFlex.gt-lg="23"
+                    [style.opacity]="alert.alertRecipient.isDeleted ? '.6' : '1'"
+                    [alertRecipient]="alert.alertRecipient" [alertMessage]="alert.alertMessage">
+                </alert>
+            </ng-container>
+        </div>
+    </ng-container>
+
+</div>

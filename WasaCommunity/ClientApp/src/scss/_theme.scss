@@ -1,0 +1,58 @@
+@import '../../node_modules/@angular/material/theming';
+@import '../app/app-theme';
+@import '../app/assets/highlightjs/material-light';
+@import 'shared/colors';
+@import 'shared/typography';
+
+@include mat-core();
+
+//Font config
+
+$title-typography: mat-typography-config(
+    $font-family: "'Comfortaa', cursive"
+);
+
+$body-typography: mat-typography-config(
+  $font-family: "'Open Sans', sans-serif",
+);
+
+h1, h2, h3, h4, h5, h6, .mat-card-title, .mat-expansion-panel-header, .heading {
+    @include mat-typography-level-to-styles($title-typography, headline);
+    opacity: .8;
+
+}
+
+.mat-expansion-panel-header, mat-step-header, .sidenav-typography .mat-list-item-content, .mat-expansion-panel-header-title {
+    @include mat-typography-level-to-styles($title-typography, subheading-1);
+    opacity: .8;
+}
+
+p, a, .mat-option-text, .mat-card-subtitle, .mat-form-field, .mat-table, .mat-checkbox-label, .mat-select-placeholder, mat-icon {
+    @include mat-typography-level-to-styles($body-typography, body-1);
+    opacity: .8;
+}
+
+.mat-stroked-button, .mat-button-wrapper, .mat-sort-header-container {
+    @include mat-typography-level-to-styles($title-typography, button);
+    opacity: 1;
+}
+
+
+
+
+$primary: mat-palette($mat-grey, 300);
+$accent:  mat-palette($mat-cyan, 500);
+$warn: mat-palette($mat-red, 500);
+
+$theme: mat-light-theme($primary, $accent, $warn);
+
+.mat-card-subtitle, .mat-card-subtitle a {
+    color: rgba(0,0,0,1) !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+    color: mat-color($accent, 500) !important;
+}
+
+@include angular-material-theme($theme);
+@include wasacommunity-app-theme($theme);

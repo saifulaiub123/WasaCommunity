@@ -1,0 +1,38 @@
+<form #form="ngForm" [formGroup]="groupForm" novalidate (ngSubmit)="save()" fxLayout="column" fxLayoutGap="1em" autocomplete="off">
+
+    <div fxLayout="row" fxLayout.lt-md="column" fxLayoutGap="1em">
+        <mat-form-field fxFlex>
+            <mat-label>{{'groups.editor.Name' | translate}}</mat-label>
+            <input matInput formControlName="name" [readonly]="!canManageGroups" />
+            <mat-error *ngIf="name.hasError('required')">
+                {{'groups.editor.GroupNameRequired' | translate}}
+            </mat-error>
+        </mat-form-field>
+
+    </div>
+
+
+    <mat-expansion-panel class="mat-elevation-z3">
+        <mat-expansion-panel-header color="primary">
+            <mat-panel-title>
+                <div [ngSwitch]="amountOfRecipientsSelected">
+                    <div *ngSwitchCase="0">Select Members</div>
+                    <div *ngSwitchDefault>{{amountOfRecipientsSelected}} Members</div>
+                </div>
+            </mat-panel-title>
+            <mat-panel-description [fxHide.xs]="true">
+                Click to choose members
+            </mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-selection-list #membersList formControlName="members" (selectionChange)="onMembersChanged($event)">
+            <mat-list-option *ngFor="let user of users; let i=index" [value]="user">
+                <div fxFlex="auto">
+                    <img class="avatar avatar-xs" [src]="getAvatarForUser(user)" alt="User Avatar" [ngStyle.xs]="{ 'width.px': 30}">
+                    <h3 [fxHide.xs]="true">{{user.fullName}}</h3>
+                    <h3 [fxHide.gt-xs]="true">{{user.fullName | split: ' '}}</h3>
+                </div>
+            </mat-list-option>
+        </mat-selection-list>
+    </mat-expansion-panel>
+    <br />
+</form>

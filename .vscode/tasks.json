@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Build DAL",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/DAL/DAL.csproj"               
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build WasaCommunity",
+            "command": "dotnet",
+            "type": "process",
+            "args": [
+                "build",
+                "${workspaceFolder}/WasaCommunity/WasaCommunity.csproj"                
+            ],
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "Build",
+            "dependsOn": ["Build DAL", "Build WasaCommunity"]
+        }
+    ]
+}

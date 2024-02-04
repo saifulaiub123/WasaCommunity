@@ -1,0 +1,73 @@
+<div class="page-content mb-5">
+    <app-page-header title="Settings" icon="settings"></app-page-header>
+
+    <div [@fadeInOut]>
+        <mat-accordion class="example-headers-align">
+            <mat-expansion-panel #profile hideToggle="true" (opened)="navigateToFragment('profile')">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{'settings.tab.Profile' | translate}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <span [fxHide.xs]="true">{{'settings.description.UserProfile' | translate}}</span>
+                        <span [fxHide.gt-xs]="true"> </span>
+                        <mat-icon>account_circle</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <user-editor #userProfile></user-editor>
+
+                <mat-action-row>
+                    <button class="mat-elevation-z3" [ngClass]="isDarkTheme  ? 'dark' : 'light'" mat-stroked-button
+                        color="accent" *ngIf="!userProfile.isEditMode" (click)="userProfile.beginEdit()">
+                        <mat-icon>edit</mat-icon><span class="button-text ml-2">Edit</span>
+                    </button>
+                    <button class="mat-elevation-z3 mr-2 save" [ngClass]="isDarkTheme  ? 'dark' : 'light'"
+                        mat-stroked-button *ngIf="userProfile.isEditMode" (click)="userProfile.save()">
+                        <mat-icon>save</mat-icon><span class="button-text ml-2">Save</span>
+                    </button>
+
+                    <button class="mat-elevation-z3" [ngClass]="isDarkTheme  ? 'dark' : 'light'" mat-stroked-button
+                        color="warn" *ngIf="userProfile.isEditMode" (click)="userProfile.cancel()">
+                        <mat-icon>cancel</mat-icon><span class="button-text ml-2">Cancel</span>
+                    </button>
+
+                </mat-action-row>
+
+            </mat-expansion-panel>
+
+            <mat-expansion-panel #preferences hideToggle="true" (opened)="navigateToFragment('preferences')">
+                <mat-expansion-panel-header>
+                    <mat-panel-title>
+                        {{'settings.tab.Preferences' | translate}}
+                    </mat-panel-title>
+                    <mat-panel-description>
+                        <span [fxHide.xs]="true">{{'settings.description.UserPreferences' | translate}}</span>
+                        <span [fxHide.gt-xs]="true"> </span>
+                        <mat-icon>tune</mat-icon>
+                    </mat-panel-description>
+                </mat-expansion-panel-header>
+
+                <user-preferences></user-preferences>
+
+                <mat-action-row>
+                    <button class="mat-elevation-z3 mr-2 save" [ngClass]="isDarkTheme  ? 'dark' : 'light'"
+                        mat-stroked-button (click)="userPreferences.save()"
+                        matTooltip="{{'preferences.SavePreferencesHint' | translate}}">
+                        <mat-icon>save</mat-icon><span class="button-text ml-2">{{'commands.Save' | translate}}</span>
+                    </button>
+
+                    <button class="mat-elevation-z3" [ngClass]="isDarkTheme  ? 'dark' : 'light'" mat-stroked-button
+                        color="warn" (click)="userPreferences.reset()"
+                        matTooltip="{{'preferences.ResetPreferencesHint' | translate}}">
+                        <mat-icon>settings_backup_restore</mat-icon><span
+                            class="button-text ml-2">{{'commands.Reset' | translate}}</span>
+                    </button>
+                </mat-action-row>
+
+            </mat-expansion-panel>
+
+        </mat-accordion>
+    </div>
+
+</div>

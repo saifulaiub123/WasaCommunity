@@ -1,0 +1,43 @@
+<div class="page-content">
+    <app-page-header [fxHide.xs]="true" title="ApplicationInsights" icon="assessment"></app-page-header>
+    <app-page-header [fxHide.gt-xs]="true" title="AppInsights" icon="assessment"></app-page-header>
+    <mat-progress-bar color="accent" *ngIf="loadingIndicator" mode="query"></mat-progress-bar>
+    <div class="mt-4" *ngIf="!loadingIndicator" [@fadeInOut] fxLayoutGap.xs="7%" fxLayoutGap.gt-xs="2%" fxLayout.xs="column" fxLayout.gt-xs="row wrap">
+
+        <div class="bottom-space" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.gt-md="48">
+            <div class="clearfix"></div>
+            <average-performance [performanceLogs]="averagePerformanceLogs"
+                [title]="'Avg. Performance'" [subtitle]="'API Locations in Millisec'">
+            </average-performance>
+        </div>
+
+        <div class="bottom-space" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.gt-md="48">
+            <div class="clearfix"></div>
+            <frontend-errors [errorsByLocation]="frontendErrorsByLocation" [title]="'Frontend Errors'"
+                [subtitle]="'Errors and Affected Users'">
+            </frontend-errors>
+        </div>
+
+        <div class="bottom-space" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.gt-md="48">
+            <div class="clearfix"></div>
+            <backend-errors [errorsByLocation]="backendErrorsByLocation" [title]="'Backend Errors'"
+                [subtitle]="'Errors and Affected Users'">
+            </backend-errors>
+        </div>
+
+        <div class="bottom-space" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.gt-md="48">
+            <div class="clearfix"></div>
+            <active-users [mostActiveUsers]="mostActiveUsers" [title]="'Most Active Users'"
+                [subtitle]="'Used Features By Username'">
+            </active-users>
+        </div>
+
+        <div class="bottom-space" fxFlex.xs="100" fxFlex.sm="100" fxFlex.md="48" fxFlex.gt-md="48">
+            <div class="clearfix"></div>
+            <most-used-features [mostUsedFeatures]="mostUsedFeatures" [title]="'Popular Features'"
+                [subtitle]="'Most Used Features'">
+            </most-used-features>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,19 @@
+<h1 *ngIf="canManageRoles" mat-dialog-title>{{roleName ? ('roles.management.EditRole' | translate:roleName) : ('roles.management.NewRole' | translate)}}</h1>
+<h1 *ngIf="!canManageRoles" mat-dialog-title>{{'roles.management.RoleDetails' | translate:roleName}}</h1>
+<br>
+<div mat-dialog-content>
+    <role-editor #roleEditor [role]="data.role" [allPermissions]="data.allPermissions"></role-editor>
+</div>
+<div mat-dialog-actions>
+    <button class="mat-elevation-z3 save" *ngIf="canManageRoles" mat-stroked-button (click)="roleEditor.save();"
+            [ngClass]="isDarkTheme  ? 'dark' : 'light'">
+        <mat-icon>save</mat-icon><span class="ml-2">Save</span>
+    </button>
+
+    <button class="mat-elevation-z3 ml-3" *ngIf="canManageRoles" mat-stroked-button (click)="cancel()" color="warn">
+        <mat-icon>cancel</mat-icon><span class="ml-2">Cancel</span>
+    </button>
+    <button class="mat-elevation-z3 ml-3" *ngIf="!canManageRoles" mat-stroked-button (click)="cancel()" color="warn">
+        <mat-icon>cancel</mat-icon><span class="ml-2">Cancel</span>
+    </button>
+</div>

@@ -1,0 +1,85 @@
+version: '3.1'
+
+services:
+
+  nginx:
+    container_name: nginx
+    image: nginx
+    volumes:
+      - ./dist:/usr/share/nginx/html
+    ports:
+      - "80:80"
+      - "443:443"
+    depends_on: 
+      - aspnetcore
+    networks:
+      - app-network
+
+
+  angular:
+    container_name: angular
+    image: ivregistry.azurecr.io/wasacommunity/angular-local:latest
+    build:
+      context: ./WasaCommunity/ClientApp
+      dockerfile: ./.docker/angular.production.dockerfile
+    ports:
+    - 4200:80
+    depends_on:
+    - aspnetcore
+    networks:
+    - app-network
+
+  aspnetcore:
+    container_name: aspnetcore
+    image: ivregistry.azurecr.io/wasacommunity/aspnetcore-local:latest
+    restart: unless-stopped
+    build:
+      context: ./
+      dockerfile: .docker/aspnetcore.production.dockerfile
+    ports:
+    - "5000:5000"
+    environment:
+    - 'ConnectionStrings:SQLServerConnection=Server=192.168.1.10;Database=WasaCommunityData;User Id=sa;Password=P@ssw0rd!'
+    - 'ConnectionStrings:SQLServerOAuthConnection=Server=192.168.1.10;Database=WasaCommunityData.OAuth;User Id=sa;Password=P@ssw0rd!'
+    - 'ConnectionStrings:SQLServerLoggingConnection=Server=192.168.1.10;Database=WasaCommunityData.Logging;User Id=sa;Password=P@ssw0rd!'
+    - 'ApplicationUrl=http://localhost:5000'
+    command: ["./wait-for-it.sh", "database:1433", "--timeout=8", "--strict", "--", "dotnet", "WasaCommunity.dll"]
+    depends_on:
+    - "database"
+    networks:
+    - app-network
+      
+  database:
+    container_name: database
+    image: ivregistry.azurecr.io/wasacommunity/database:latest
+    ports:
+    - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "P@ssw0rd!"
+      MSSQL_PID: "Express"
+    volumes:
+      - data:/var/lib/sqlexpress
+    networks:
+    - app-network
+
+  # cadvisor:
+  #   container_name: cadvisor
+  #   image: google/cadvisor
+  #   volumes:
+  #     - /:/rootfs:ro
+  #     - /var/run:/var/run:rw
+  #     - /sys:/sys:ro
+  #     - /var/lib/docker/:/var/lib/docker:ro
+  #   ports:
+  #     - "8080:8080"
+  #   networks:
+  #     - app-network
+
+networks:
+  app-network:
+    driver: bridge
+
+volumes:
+  data:
+    external: true

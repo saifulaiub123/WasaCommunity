@@ -1,0 +1,15 @@
+<div class="header mb-2 p-4" fxLayout="row" fxLayoutAlign="space-between center">
+    <div class="heading">
+        <div class="avatar-wrapper" fxFlex="15" fxFlex.xs="30">
+            <img class="avatar avatar-lg mat-elevation-z3" [src]="getAvatarForAlert(data.alertMessage)" alt="User Avatar">
+        </div>
+        <h3 [ngStyle.xs]="{ 'font-size.em': 1 }" class="ml-0 mt-2 mb-0">{{data.alertMessage.author.fullName}}</h3>
+    </div>
+    <mat-icon id="close" fxFlexAlign="baseline" class="close-lg" (click)="closeAlertDetails()">close</mat-icon>
+</div>
+<perfect-scrollbar>
+    <div class="dialog-content">
+        <h5>{{data.alertMessage.title}}</h5>
+        <div [innerHTML]="data.alertMessage.body"></div>
+    </div>
+</perfect-scrollbar>

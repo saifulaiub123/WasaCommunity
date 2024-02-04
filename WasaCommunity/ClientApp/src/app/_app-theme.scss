@@ -1,0 +1,62 @@
+@import '../../node_modules/@angular/material/theming';
+@import './shared/footer-component/footer.component-theme';
+@import './components/dashboard/dashboard.component-theme';
+@import './components/alerts/alert-create/alert-create.component-theme';
+@import './admin/role-editor-component/role-editor.component-theme';
+@import './components/chat/chat.component-theme';
+@import './components/people/people.component-theme';
+@import '../scss/shared/colors';
+
+
+@mixin clearfix() {
+
+    &:before,
+    &:after {
+        content: " ";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+}
+
+@mixin wasacommunity-app-theme($theme) {
+    $primary: map-get($theme, primary);
+    $accent: map-get($theme, accent);
+    $warn: map-get($theme, warn);
+
+    mat-nav-list .mat-list-item.active {
+        background-color: mat-color($accent, 500) !important;
+    }
+
+    a {
+        text-decoration: none;
+        color: mat-color($primary, 400);
+    }
+
+    .clearfix {
+        @include clearfix();
+    }
+
+    .card-status-header {
+        background-color: mat-color($primary);
+    }
+
+    .offline {
+        .status-indicator mat-icon {
+            color: mat-color($warn);
+        }
+    }
+
+    .mat-pseudo-checkbox-checked {
+        background-color: $success;
+    }
+
+    @include dashboard-theme($theme);
+    @include alert-create-theme($theme);
+    @include footer-theme($theme);
+    @include role-editor-theme($theme);
+    @include chat-theme($theme);
+    @include people-theme($theme);
+}

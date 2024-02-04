@@ -1,0 +1,40 @@
+.heading {
+    display: flex;
+    align-items: center;
+    font-size: 2em;
+    font-weight: 500;
+}
+
+.appointment {
+    height: 100px !important;
+}
+
+
+::ng-deep .hide-view-switcher-label .dx-scheduler-view-switcher-label {
+    visibility: hidden;
+}
+
+
+::ng-deep .dx-tooltip-wrapper .dx-overlay-content .dx-popup-content {
+    // background-color: none;
+    border-radius: 8px;
+    // border-color: none;
+    font-size: 14px;
+}
+
+::ng-deep .dx-tooltip-wrapper .dx-overlay-content {
+    border-radius: 8px;
+    text-align: left;
+}
+
+// ::ng-deep .dx-scheduler-dropdown-appointments.dx-button {
+//     max-width: 130px;
+//     border-radius: 8px;
+//     margin-top: 3px;
+// }
+
+// ::ng-deep .dx-scheduler-work-space.dx-scheduler-work-space-month .dx-scheduler-dropdown-appointments {
+//     margin-top: 3px;
+// }
+
+

@@ -1,0 +1,30 @@
+<div class="page-content mb-5" fxLayout="column" fxLayoutAlign="center center" fxFlexFill>
+    <div [hidden]="clientUsesInternetExplorer()">
+        <mat-card class="mat-elevation-z6">
+            <img fxHide.gt-sm="true" *ngIf="isDarkTheme | async" fxLayoutAlign="center start" src="{{ logoWhite }}">
+            <img fxHide.gt-sm="true" *ngIf="!(isDarkTheme | async)"  fxLayoutAlign="center start" src="{{ logoBlack }}">
+            <mat-card-header fxLayoutAlign="center start" ngClass.lt-md="mt-5" ngClass.gt-sm="mt-3">
+                <mat-card-title><h2>Sign in to Wasa Community</h2></mat-card-title>
+            </mat-card-header>
+            <mat-card-content>
+                <login-control [isModal]="false"></login-control>
+            </mat-card-content>
+            <mat-card-actions fxLayoutAlign="center start">
+                <button mat-raised-button color="accent" class="mb-3" [disabled]="loginControl.isLoading" (click)="loginControl.login()"><mat-spinner *ngIf="loginControl.isLoading" [diameter]="24"></mat-spinner>{{'mainMenu.Login' | translate | uppercase}}</button>
+            </mat-card-actions>
+        </mat-card>
+    </div>
+
+    <div *ngIf="clientUsesInternetExplorer()">
+            <mat-card class="mat-elevation-z6">
+                <img fxHide.gt-sm="true" *ngIf="isDarkTheme | async" fxLayoutAlign="center start" src="{{ logoWhite }}">
+                <img fxHide.gt-sm="true" *ngIf="!(isDarkTheme | async)"  fxLayoutAlign="center start" src="{{ logoBlack }}">
+                <mat-card-header fxLayoutAlign="center start" ngClass.lt-md="mt-5" ngClass.gt-sm="mt-3">
+                    <mat-card-title><h2 class="internet-explorer">You are using Internet Explorer</h2></mat-card-title>
+                </mat-card-header>
+                <mat-card-content>
+                    <p>Because this is an old browser, the compatibility with modern applications are very limited. Please switch to Google Chrome, Mozilla Firefox or Microsoft Edge.</p>
+                </mat-card-content>
+            </mat-card>
+        </div>
+</div>
